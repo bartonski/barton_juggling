@@ -106,6 +106,29 @@ function draw() {
     ctx.fillStyle = "#444444";
 
     // All of the drawing within the animation goes here.
+
+    // Draw Grid Lines every 100 px.
+
+    // Horizontal
+
+    var CurrentHeight;
+    for (CurrentHeight = 0; CurrentHeight < w.height; CurrentHeight+=100) {
+        p1 = new point( 0, CurrentHeight );
+        p2 = new point( w.width, CurrentHeight );
+        label_point = new point( -50, CurrentHeight + 10 );
+        text( label_point, CurrentHeight, 20, "black" )
+        line( p1, p2, "#000000", 1 );
+    }
+
+    // Vertical
+    var CurrentWidth;
+    for (CurrentWidth = 0; CurrentWidth < w.width; CurrentWidth+=100) {
+        p1 = new point( CurrentWidth, 0 );
+        p2 = new point( CurrentWidth, w.height );
+        label_point = new point( CurrentWidth + 10, -20 );
+        text( label_point, CurrentWidth, 20, "black" )
+        line( p1, p2, "#000000", 1 );
+    }
 }
 
 init( 500 );
