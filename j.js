@@ -25,6 +25,8 @@ var tick_interval;
 var beat_interval;
 var frames_per_beat;
 var tick_in_current_beat = 0; 
+var center_line = w.usableWidth/2;
+var pattern_top = w.usableHeight
 
 function point( x, y ) {
     this.x = x;
@@ -59,6 +61,22 @@ function circle(center,r) {
     ctx.beginPath();
     ctx.arc(center.xreal, center.yreal, r, 0, Math.PI*2, true);
     ctx.stroke();
+}
+ 
+function parabola( point, t ) {
+    // need to figure out acceleration based on max height and max air time.
+    // acceleration should be expressed in ticks (thousanths of a second)
+}
+
+function ball( start_point, start_beat, color, radius ) {
+    // p1 is the start position, p2 is the initial throw position.
+    var current_position = start;
+    var ticks_since_last_catch = 0;
+    var ticks_since_last_throw = 0;
+
+    // dwell is in beats, varying between 0 and 2, exclusive.
+    function toss( dwell, total_beats, toss_point, catch_point ) {
+    }
 }
 
 function rect(x,y,w,h) {
@@ -164,6 +182,7 @@ function draw() {
     }
 }
 
-init( 60, 120 );
+init( fps, 120 );
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
+// See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
