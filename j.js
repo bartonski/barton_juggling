@@ -16,17 +16,22 @@ function win( width, height ) {
 
 // leave room for slider below window.
 // Don't have slider, but might want controls.
+// Probably best to get this from HTML, and set it all in CSS
 var w = new win( window.innerWidth, window.innerHeight - 100 );
 
-var total_ticks = 0;
-var total_beats = 0;
-var total_frames = 0;
-var tick_interval;
-var beat_interval;
-var frames_per_beat;
-var tick_in_current_beat = 0; 
-var center_line = w.usableWidth/2;
-var pattern_top = w.usableHeight
+var global = {
+    acceleration: 0,
+    maxheight: 0,
+    total_ticks: 0,
+    total_beats: 0,
+    total_frames: 0,
+    tick_interval: 0,
+    beat_interval: 0,
+    frames_per_beat: 0,
+    tick_in_current_beat: 0, 
+    center_line: w.usableWidth/2,
+    pattern_top: w.usableHeight
+}
 
 function point( x, y ) {
     this.x = x;
@@ -129,10 +134,10 @@ function init( fps, bpm ) {
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = w.width;
     ctx.canvas.height = w.height;
-    tick_interval = fps_interval(fps);
-    beat_interval = bpm_interval(bpm);
-    frames_per_beat = fps * 60 / bpm;
-    return setInterval( draw, tick_interval );
+    global.tick_interval = fps_interval(fps);
+    global.beat_interval = bpm_interval(bpm);
+    global.frames_per_beat = fps * 60 / bpm;
+    return setInterval( draw, global.tick_interval );
 }
 
 function draw() {
@@ -166,20 +171,22 @@ function draw() {
         line( p1, p2, "#000000", 1 );
     }
 
-    var sign = ( total_beats % 2 === 0 ) ? 1 : -1;
-    var elevation = ( total_beats % 2 === 0 ) ? 0 : w.height;
+    var sign = ( global.total_beats % 2 === 0 ) ? 1 : -1;
+    var elevation = ( global.total_beats % 2 === 0 ) ? 0 : w.height;
     var travel = w.height;
-    var travel_per_frame = travel / frames_per_beat;
-    total_ticks +=  tick_interval;
-    total_frames++;
-    tick_in_current_beat += tick_interval;
-    frame_in_current_beat = tick_in_current_beat / tick_interval;
+    var travel_per_frame = travel / global.frames_per_beat;
+    global.total_ticks +=  global.tick_interval;
+    global.total_frames++;
+    global.tick_in_current_beat += global.tick_interval;
+    frame_in_current_beat = global.tick_in_current_beat / global.tick_interval;
     metronome_point = new point( 0, elevation + (sign * travel_per_frame * frame_in_current_beat ))
     line( new point( 0, 0), metronome_point, "#FF0000", 3 )
-    if ( tick_in_current_beat >= beat_interval ) {
-        total_beats++;
-        tick_in_current_beat %= beat_interval;
+    if ( global.tick_in_current_beat >= global.beat_interval ) {
+        global.total_beats++;
+        global.tick_in_current_beat %= global.beat_interval;
     }
+    line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 3 );
+    line( new point(0, global.pattern_top), new point(w.width, global.pattern_top), "#0000FF", 3 );
 }
 
 init( fps, 120 );
