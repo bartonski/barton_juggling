@@ -191,5 +191,15 @@ function draw() {
 
 init( fps, 120 );
 
+var height_slider = document.getElementById("patternMaxHeight");
+var height_output = document.getElementById("patternHeight");
+
+// Update the current slider value (each time you drag the slider handle)
+height_slider.oninput = function() {
+    global.pattern_top = this.value;
+    height_output.innerHTML = global.pattern_top;
+}
+
+
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
