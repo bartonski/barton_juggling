@@ -30,8 +30,10 @@ var global = {
     frames_per_beat: 0,
     tick_in_current_beat: 0, 
     center_line: w.usableWidth/2,
-    pattern_top: w.usableHeight
-}
+    pattern_top: w.usableHeight,
+    bpm: 120,
+    fps: 30
+};
 
 function point( x, y ) {
     this.x = x;
@@ -57,10 +59,8 @@ function point( x, y ) {
 
 var canvas;  
 var ctx;
-var counter = 0;
 
 // FPS should be variable
-var fps = 30;
 
 function circle(center,r) {
     ctx.beginPath();
@@ -129,7 +129,7 @@ function fps_interval(fps) {
     return ticks / fps;
 }
 
-function init( fps, bpm ) {
+function init( fps, bpm, pattern_top ) {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = w.width;
@@ -137,6 +137,7 @@ function init( fps, bpm ) {
     global.tick_interval = fps_interval(fps);
     global.beat_interval = bpm_interval(bpm);
     global.frames_per_beat = fps * 60 / bpm;
+    global.pattern_top = pattern_top;
     return setInterval( draw, global.tick_interval );
 }
 
@@ -189,7 +190,7 @@ function draw() {
     line( new point(0, global.pattern_top), new point(w.width, global.pattern_top), "#0000FF", 3 );
 }
 
-init( fps, 120 );
+init( global.fps, global.bpm, global.pattern_top );
 
 var height_slider = document.getElementById("patternMaxHeight");
 var height_output = document.getElementById("patternHeight");
@@ -198,6 +199,7 @@ var height_output = document.getElementById("patternHeight");
 height_slider.oninput = function() {
     global.pattern_top = this.value;
     height_output.innerHTML = global.pattern_top;
+    init( global.fps, global.bpm, global.pattern_top );
 }
 
 
