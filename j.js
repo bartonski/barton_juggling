@@ -228,7 +228,7 @@ midline_slider.oninput = function() {
     var center_line = Number(this.value);
     var fps = global.fps;
     var bpm = global.bpm;
-    height_output.innerHTML = center_line;
+    midline_output.innerHTML = center_line;
     global.interval_id = init( fps, bpm, global.pattern_top, center_line );
 }
 
