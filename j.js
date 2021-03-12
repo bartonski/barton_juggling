@@ -31,6 +31,7 @@ var global = {
     tick_in_current_beat: 0, 
     center_line: w.usableWidth/2,
     pattern_top: w.usableHeight,
+    metronome_x: 0,
     bpm: 120,
     fps: 30
 };
@@ -134,10 +135,18 @@ function init( fps, bpm, pattern_top ) {
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = w.width;
     ctx.canvas.height = w.height;
+    global.fps = fps;
+    global.tick_in_current_beat = 0;
+    console.log("fps ", fps);
     global.tick_interval = fps_interval(fps);
+    console.log("tick interval ", global.tick_interval);
     global.beat_interval = bpm_interval(bpm);
+    console.log("beat interval ", global.beat_interval);
     global.frames_per_beat = fps * 60 / bpm;
+    console.log("frames per beat ", global.frames_per_beat);
     global.pattern_top = pattern_top;
+    console.log("pattern top ", global.pattern_top);
+    clearInterval( global.interval_id);
     return setInterval( draw, global.tick_interval );
 }
 
@@ -180,26 +189,34 @@ function draw() {
     global.total_frames++;
     global.tick_in_current_beat += global.tick_interval;
     frame_in_current_beat = global.tick_in_current_beat / global.tick_interval;
-    metronome_point = new point( 0, elevation + (sign * travel_per_frame * frame_in_current_beat ))
-    line( new point( 0, 0), metronome_point, "#FF0000", 3 )
+    metronome_point = new point( global.metronome_x, elevation + (sign * travel_per_frame * frame_in_current_beat ))
+    pattern_top_left = new point( 0, global.pattern_top );
+    text( pattern_top_left, global.pattern_top, 40, "#0000FF");
+    line( new point(0, global.pattern_top), new point(w.width, global.pattern_top),  "#0000FF", 3 );
+    line( new point( global.metronome_x, 0), metronome_point, "#FF0000", 3 )
     if ( global.tick_in_current_beat >= global.beat_interval ) {
         global.total_beats++;
         global.tick_in_current_beat %= global.beat_interval;
     }
     line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 3 );
-    line( new point(0, global.pattern_top), new point(w.width, global.pattern_top), "#0000FF", 3 );
 }
 
-init( global.fps, global.bpm, global.pattern_top );
 
 var height_slider = document.getElementById("patternMaxHeight");
+height_slider.min = 0;
+height_slider.max = w.usableHeight;
 var height_output = document.getElementById("patternHeight");
+height_output.innerHTML = global.pattern_top;
+
+global.interval_id = init( global.fps, global.bpm, global.pattern_top );
 
 // Update the current slider value (each time you drag the slider handle)
 height_slider.oninput = function() {
-    global.pattern_top = this.value;
-    height_output.innerHTML = global.pattern_top;
-    init( global.fps, global.bpm, global.pattern_top );
+    var pattern_top = Number(this.value);
+    var fps = global.fps;
+    var bpm = global.bpm;
+    height_output.innerHTML = pattern_top;
+    global.interval_id = init( fps, bpm, pattern_top );
 }
 
 
