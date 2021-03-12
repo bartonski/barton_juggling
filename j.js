@@ -130,7 +130,7 @@ function fps_interval(fps) {
     return ticks / fps;
 }
 
-function init( fps, bpm, pattern_top ) {
+function init( fps, bpm, pattern_top, center_line ) {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = w.width;
@@ -145,6 +145,7 @@ function init( fps, bpm, pattern_top ) {
     global.frames_per_beat = fps * 60 / bpm;
     console.log("frames per beat ", global.frames_per_beat);
     global.pattern_top = pattern_top;
+    global.center_line = center_line;
     console.log("pattern top ", global.pattern_top);
     clearInterval( global.interval_id);
     return setInterval( draw, global.tick_interval );
@@ -191,8 +192,7 @@ function draw() {
     frame_in_current_beat = global.tick_in_current_beat / global.tick_interval;
     metronome_point = new point( global.metronome_x, elevation + (sign * travel_per_frame * frame_in_current_beat ))
     pattern_top_left = new point( 0, global.pattern_top );
-    text( pattern_top_left, global.pattern_top, 40, "#0000FF");
-    line( new point(0, global.pattern_top), new point(w.width, global.pattern_top),  "#0000FF", 3 );
+    line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 3 );
     line( new point( global.metronome_x, 0), metronome_point, "#FF0000", 3 )
     if ( global.tick_in_current_beat >= global.beat_interval ) {
         global.total_beats++;
@@ -208,7 +208,12 @@ height_slider.max = w.usableHeight;
 var height_output = document.getElementById("patternHeight");
 height_output.innerHTML = global.pattern_top;
 
-global.interval_id = init( global.fps, global.bpm, global.pattern_top );
+var midline_slider = document.getElementById("patternMidLine");
+midline_slider.min = 0;
+midline_slider.max = w.usableWidth;
+var midline_output = document.getElementById("midLine");
+midline_output.innerHTML = global.center_line;
+global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
 
 // Update the current slider value (each time you drag the slider handle)
 height_slider.oninput = function() {
@@ -216,9 +221,16 @@ height_slider.oninput = function() {
     var fps = global.fps;
     var bpm = global.bpm;
     height_output.innerHTML = pattern_top;
-    global.interval_id = init( fps, bpm, pattern_top );
+    global.interval_id = init( fps, bpm, pattern_top, global.center_line );
 }
 
+midline_slider.oninput = function() {
+    var center_line = Number(this.value);
+    var fps = global.fps;
+    var bpm = global.bpm;
+    height_output.innerHTML = center_line;
+    global.interval_id = init( fps, bpm, global.pattern_top, center_line );
+}
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.

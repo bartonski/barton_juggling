@@ -6,15 +6,19 @@
     </head>
     <body>
         <section>
+            <div class="slidecontainer">
+              <input type="range" min="100" max="600" value="500" class="slider" id="patternMaxHeight">
+              <p>Pattern Height: <span id="patternHeight"></span></p>
+            </div>
+            <div class="slidecontainer">
+              <input type="range" min="100" max="600" value="500" class="slider" id="patternMidLine">
+              <p>Pattern Mid Line: <span id="midLine"></span></p>
+            </div>
             <div>
                 <canvas id="canvas" width="400" height="300">
                  This text is displayed if your browser 
                  does not support HTML5 Canvas.
                 </canvas>
-            </div>
-            <div class="slidecontainer">
-              <input type="range" min="100" max="600" value="500" class="slider" id="patternMaxHeight">
-              <p>Value: <span id="patternHeight"></span></p>
             </div>
         </section>
         <script type="text/javascript" src="j.js"></script>
