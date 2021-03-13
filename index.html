@@ -6,20 +6,39 @@
     </head>
     <body>
         <section>
-            <div class="slidecontainer">
-              <input type="range" min="100" max="600" value="500" class="slider" id="patternMaxHeight">
-              <p>Pattern Height: <span id="patternHeight"></span></p>
-            </div>
-            <div class="slidecontainer">
-              <input type="range" min="100" max="600" value="500" class="slider" id="patternMidLine">
-              <p>Pattern Mid Line: <span id="midLine"></span></p>
-            </div>
             <div>
                 <canvas id="canvas" width="400" height="300">
                  This text is displayed if your browser 
                  does not support HTML5 Canvas.
                 </canvas>
             </div>
+            <fieldset id="basic_info" class="support">
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="patternMaxHeight">Pattern top: <span id="patternHeight"></span>
+                </span>
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="patternMinHeight">Pattern bottom: <span id="patternTrayPlane"></span>
+                </span>
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="patternMidLine">Pattern mid line: <span id="midLine"></span>
+                </span>
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="catch_slider">Catch line: <span id="catch_output"></span>
+                </span>
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="throw_slider">Throw line: <span id="throw_output"></span>
+                </span>
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="fps_slider">Frames per second: <span id="fps_output"></span>
+                </span>
+                <span class="slidecontainer">
+                    <input type="range" min="100" max="600" value="500" class="slider" id="bpm_slider">Beats per minute: <span id="bpm_output"></span>
+                </span>
+                <!--
+                Need text input for:
+                    * Site swap
+                -->
+            </fieldset>
         </section>
         <script type="text/javascript" src="j.js"></script>
     </body>
