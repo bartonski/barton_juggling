@@ -17,7 +17,8 @@ function win( width, height ) {
 // leave room for slider below window.
 // Don't have slider, but might want controls.
 // Probably best to get this from HTML, and set it all in CSS
-var w = new win( window.innerWidth, window.innerHeight - 100 );
+var controls = document.getElementById("controls");
+var w = new win( window.innerWidth, window.innerHeight - controls.clientHeight );
 
 var global = {
     acceleration: 0,
@@ -202,33 +203,33 @@ function draw() {
 }
 
 
-var height_slider = document.getElementById("patternMaxHeight");
-height_slider.min = 0;
-height_slider.max = w.usableHeight;
-var height_output = document.getElementById("patternHeight");
-height_output.innerHTML = global.pattern_top;
+var slider_pattern_top = document.getElementById("slider_pattern_top");
+slider_pattern_top.min = 0;
+slider_pattern_top.max = w.usableHeight;
+var pattern_top = document.getElementById("pattern_top");
+pattern_top.innerHTML = global.pattern_top;
 
-var midline_slider = document.getElementById("patternMidLine");
-midline_slider.min = 0;
-midline_slider.max = w.usableWidth;
-var midline_output = document.getElementById("midLine");
-midline_output.innerHTML = global.center_line;
+var slider_pattern_mid_line = document.getElementById("slider_pattern_mid_line");
+slider_pattern_mid_line.min = 0;
+slider_pattern_mid_line.max = w.usableWidth;
+var pattern_mid_line = document.getElementById("pattern_mid_line");
+pattern_mid_line.innerHTML = global.center_line;
 global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
 
 // Update the current slider value (each time you drag the slider handle)
-height_slider.oninput = function() {
+slider_pattern_top.oninput = function() {
     var pattern_top = Number(this.value);
     var fps = global.fps;
     var bpm = global.bpm;
-    height_output.innerHTML = pattern_top;
+    pattern_top.innerHTML = pattern_top;
     global.interval_id = init( fps, bpm, pattern_top, global.center_line );
 }
 
-midline_slider.oninput = function() {
+slider_pattern_mid_line.oninput = function() {
     var center_line = Number(this.value);
     var fps = global.fps;
     var bpm = global.bpm;
-    midline_output.innerHTML = center_line;
+    pattern_mid_line.innerHTML = center_line;
     global.interval_id = init( fps, bpm, global.pattern_top, center_line );
 }
 
