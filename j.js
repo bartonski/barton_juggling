@@ -131,22 +131,21 @@ function fps_interval(fps) {
 }
 
 function init( fps, bpm, pattern_top, center_line ) {
+    console.log("In init");
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = w.width;
     ctx.canvas.height = w.height;
     global.fps = fps;
     global.tick_in_current_beat = 0;
-    console.log("fps ", fps);
+    console.log("    fps ", fps);
+    console.log("    global.fps ", global.fps);
     global.tick_interval = fps_interval(fps);
-    console.log("tick interval ", global.tick_interval);
     global.beat_interval = bpm_interval(bpm);
-    console.log("beat interval ", global.beat_interval);
     global.frames_per_beat = fps * 60 / bpm;
-    console.log("frames per beat ", global.frames_per_beat);
     global.pattern_top = pattern_top;
     global.center_line = center_line;
-    console.log("pattern top ", global.pattern_top);
+    console.log("    global: ", global);
     clearInterval( global.interval_id);
     return setInterval( draw, global.tick_interval );
 }
@@ -201,36 +200,70 @@ function draw() {
     line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 3 );
 }
 
-
-var height_slider = document.getElementById("patternMaxHeight");
-height_slider.min = 0;
-height_slider.max = w.usableHeight;
-var height_output = document.getElementById("patternHeight");
-height_output.innerHTML = global.pattern_top;
-
-var midline_slider = document.getElementById("patternMidLine");
-midline_slider.min = 0;
-midline_slider.max = w.usableWidth;
-var midline_output = document.getElementById("midLine");
-midline_output.innerHTML = global.center_line;
 global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
 
-// Update the current slider value (each time you drag the slider handle)
-height_slider.oninput = function() {
-    var pattern_top = Number(this.value);
-    var fps = global.fps;
-    var bpm = global.bpm;
-    height_output.innerHTML = pattern_top;
-    global.interval_id = init( fps, bpm, pattern_top, global.center_line );
+function set_slider( setting, slider_element, output_element ) {
+    global[setting] = Number(slider_element.value);
+    console.log( "in set_slider"); 
+    console.log( "   setting: ", setting ); 
+    console.log( "   value: ", global[setting] ); 
+    console.log( "   this: ", this ); 
+    output_element.innerHTML = global[setting];
+    global.interval_id = init(
+                            global.fps,
+                            global.bpm,
+                            global.pattern_top,
+                            global.center_line
+                         );
 }
 
-midline_slider.oninput = function() {
-    var center_line = Number(this.value);
-    var fps = global.fps;
-    var bpm = global.bpm;
-    midline_output.innerHTML = center_line;
-    global.interval_id = init( fps, bpm, global.pattern_top, center_line );
+function Slider( slider_id, output_id, min, max, display_value )  {
+    this.slider_element = document.getElementById( slider_id );
+    this.output_element = document.getElementById( output_id );
+    this.slider_element.min = min;
+    this.slider_element.max = max;
+    this.output_element.innerHTML = display_value;
 }
+
+
+// Slider( slider_id, output_id, min, max, display_value )  {
+var height_sldr = new Slider ( "patternMaxHeight", "patternHeight", 0,
+                               w.usableHeight, global.pattern_top );
+console.log( "height_sldr: ", height_sldr );
+
+var midline_sldr = new Slider( "patternMidLine", "midLine", 0,
+                               w.usableWidth, global.center_line );
+
+var tray_sldr    = new Slider( "patternMinHeight", "patternTrayPlane",
+                               0, w.usableHeight, global.throw_y );
+
+var catch_sldr   = new Slider( "catch_slider", "catch_output", 0,
+                               w.usableWidth, global.catch_x );
+
+var throw_sldr   = new Slider( "throw_slider", "throw_output", 0 ,
+                               w.usableWidth, global.throw_x );
+
+var fps_sldr     = new Slider( "fps_slider", "fps_output", 30,
+                               150, global.fps );
+
+var bpm_sldr     = new Slider( "bpm_slider", "bpm_output", 60,
+                               300, global.bpm );
+
+
+height_sldr.slider_element.oninput
+    = set_slider( "pattern_top", height_sldr.slider_element, height_sldr.output_element);
+midline_sldr.slider_element.oninput
+    = set_slider( "center_line", midline_sldr.slider_element, midline_sldr.output_element);
+tray_sldr.slider_element.oninput
+    = set_slider( "throw_y", tray_sldr.slider_element, tray_sldr.output_element);
+catch_sldr.slider_element.oninput
+    = set_slider( "catch_x", catch_sldr.slider_element, catch_sldr.output_element);
+throw_sldr.slider_element.oninput
+    = set_slider( "thow_x", throw_sldr.slider_element, throw_sldr.output_element);
+fps_sldr.slider_element.oninput
+    = set_slider( "fps", fps_sldr.slider_element, fps_sldr.output_element);
+bpm_sldr.slider_element.oninput
+    = set_slider( "bpm", bpm_sldr.slider_element, bpm_sldr.output_element);
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
