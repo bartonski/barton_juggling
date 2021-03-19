@@ -140,3 +140,9 @@ How much do individual throws vary from the average throw in a juggling pattern?
 * A catch is a stall -- the prop decelerates smoothly rather than slapping your hand.
 * The scoop is a redirection of the energy of the previous throw -- rather than stopping the prop dead and then re-accelerating it. 
 * 1 beat dwell time => N-1 beats air time puts throw and catch on the beat, which feels very natural.
+* Know where everything is:
+    * Know exactly where the props are, all the time.
+    * Know exactly where your hands are, all the time.
+    * Know where you want the props to go, all the time.
+* A drop is caused by a violation of one of the above. identify what you didn't know.
+    
