@@ -183,15 +183,26 @@ function draw() {
         line( p1, p2, "#000000", 1 );
     }
 
-    var sign = ( global.total_beats % 2 === 0 ) ? 1 : -1;
-    var elevation = ( global.total_beats % 2 === 0 ) ? 0 : w.height;
-    var travel = w.height;
-    var travel_per_frame = travel / global.frames_per_beat;
+    
+
+    function get_normalized_metronome_height ( beat, tick) {
+        var frame_in_current_beat = tick / global.tick_interval;
+        var frame_remaining_in_current_beat
+            = global.frames_per_beat - frame_in_current_beat;
+        var metronome_height
+            = ( beat % 2 === 0 )
+            ? frame_in_current_beat
+            : frame_remaining_in_current_beat;
+        return metronome_height / global.frames_per_beat;
+    };
+
+    var metronome_y_normalized =
+    get_normalized_metronome_height ( beat=global.total_beats, tick=global.tick_in_current_beat);
+
     global.total_ticks +=  global.tick_interval;
     global.total_frames++;
     global.tick_in_current_beat += global.tick_interval;
-    frame_in_current_beat = global.tick_in_current_beat / global.tick_interval;
-    metronome_point = new point( global.metronome_x, elevation + (sign * travel_per_frame * frame_in_current_beat ))
+    metronome_point = new point( global.metronome_x, metronome_y_normalized * w.height);
     pattern_top_left = new point( 0, global.pattern_top );
     line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 3 );
     line( new point( global.metronome_x, 0), metronome_point, "#FF0000", 3 )
