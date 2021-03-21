@@ -18,7 +18,7 @@ function win( width, height ) {
 // Don't have slider, but might want controls.
 // Probably best to get this from HTML, and set it all in CSS
 var controls = document.getElementById("controls");
-var w = new win( window.innerWidth, window.innerHeight - controls.clientHeight );
+var w = new win( window.innerWidth, window.innerHeight - (controls.clientHeight + 50) );
 
 var global = {
     acceleration: 0,
@@ -33,6 +33,7 @@ var global = {
     center_line: w.usableWidth/2,
     pattern_top: w.usableHeight,
     metronome_x: 0,
+    tray_plane: 50,
     bpm: 120,
     fps: 30
 };
@@ -76,7 +77,6 @@ function parabola( point, t ) {
 }
 
 function ball( start_point, start_beat, color, radius ) {
-    // p1 is the start position, p2 is the initial throw position.
     var current_position = start;
     var ticks_since_last_catch = 0;
     var ticks_since_last_throw = 0;
@@ -200,6 +200,7 @@ function draw() {
         global.tick_in_current_beat %= global.beat_interval;
     }
     line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 3 );
+    line( new point(0,global.tray_plane), new point(w.width,global.tray_plane), "#0000FF", 3 );
 }
 
 
@@ -209,11 +210,21 @@ slider_pattern_top.max = w.usableHeight;
 var pattern_top = document.getElementById("pattern_top");
 pattern_top.innerHTML = global.pattern_top;
 
+var slider_pattern_bottom = document.getElementById("slider_pattern_bottom");
+slider_pattern_bottom.min = 0;
+slider_pattern_bottom.max = w.usableHeight;
+slider_pattern_bottom.value = global.tray_plane;
+var pattern_bottom = document.getElementById("pattern_bottom");
+pattern_bottom.innerHTML = global.tray_plane;
+
 var slider_pattern_mid_line = document.getElementById("slider_pattern_mid_line");
 slider_pattern_mid_line.min = 0;
 slider_pattern_mid_line.max = w.usableWidth;
 var pattern_mid_line = document.getElementById("pattern_mid_line");
 pattern_mid_line.innerHTML = global.center_line;
+
+
+
 global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
 
 // Update the current slider value (each time you drag the slider handle)
@@ -223,6 +234,14 @@ slider_pattern_top.oninput = function() {
     var bpm = global.bpm;
     pattern_top.innerHTML = pattern_top;
     global.interval_id = init( fps, bpm, pattern_top, global.center_line );
+}
+
+slider_pattern_bottom.oninput = function() {
+    global.tray_plane = Number(this.value);
+    var fps = global.fps;
+    var bpm = global.bpm;
+    pattern_bottom.innerHTML = global.tray_plane;
+    global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
 }
 
 slider_pattern_mid_line.oninput = function() {

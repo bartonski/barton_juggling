@@ -7,7 +7,7 @@
     <body>
         <section>
             <div>
-                <canvas id="canvas" width="400" height="300">
+                <canvas id="canvas">
                  This text is displayed if your browser 
                  does not support HTML5 Canvas.
                 </canvas>
@@ -21,11 +21,19 @@
                 </div>
                 <div class="slidecontainer">
                 <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_bottom">
-                Pattern bottom: <span id="pattern_top"></span></span>
+                Pattern bottom: <span id="pattern_bottom"></span></span>
                 </div>
                 <div class="slidecontainer">
                 <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_mid_line">
                 Pattern mid line: <span id="pattern_mid_line"></span></span>
+                </div>
+                <div class="slidecontainer">
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_catch_line">
+                Pattern catch line: <span id="pattern_catch_line"></span></span>
+                </div>
+                <div class="slidecontainer">
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_throw_line">
+                Pattern throw line: <span id="pattern_throw_line"></span></span>
                 </div>
             </fieldset>
             </div>
