@@ -183,8 +183,6 @@ function draw() {
         line( p1, p2, "#000000", 1 );
     }
 
-    
-
     function get_normalized_metronome_height ( beat, tick) {
         var frame_in_current_beat = tick / global.tick_interval;
         var frame_remaining_in_current_beat
@@ -202,10 +200,15 @@ function draw() {
     global.total_ticks +=  global.tick_interval;
     global.total_frames++;
     global.tick_in_current_beat += global.tick_interval;
-    metronome_point = new point( global.metronome_x, metronome_y_normalized * w.height);
     pattern_top_left = new point( 0, global.pattern_top );
     line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 3 );
-    line( new point( global.metronome_x, 0), metronome_point, "#FF0000", 3 )
+    var metronome_height = global.pattern_top - global.tray_plane;
+    metronome_point = new point(
+        global.metronome_x,
+        metronome_y_normalized * metronome_height + global.tray_plane);
+    line(
+        new point( global.metronome_x, global.tray_plane),
+        metronome_point, "#FF0000", 3 )
     if ( global.tick_in_current_beat >= global.beat_interval ) {
         global.total_beats++;
         global.tick_in_current_beat %= global.beat_interval;
