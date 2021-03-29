@@ -3,15 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <title>Juggling</title>
+<style>
+.container {
+  margin: 0 auto;
+  position: relative;
+}
+
+.video {
+  width: 40%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color:rgba(o,0,0,0);
+  visibility: hidden;
+}
+</style>
     </head>
     <body>
         <section>
-            <div>
-                <canvas id="canvas">
-                 This text is displayed if your browser 
-                 does not support HTML5 Canvas.
-                </canvas>
-            </div>
             <div id="controls">
             <fieldset>
                 <legend>Pattern</legend>
@@ -36,6 +53,15 @@
                 </div>
                 </span>
             </fieldset>
+            </div>
+        </section>
+        <section>
+            <div id="container" class="container">
+                <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_160bpm.mp4" ></video>
+                <canvas id="canvas">
+                 This text is displayed if your browser 
+                 does not support HTML5 Canvas.
+                </canvas>
             </div>
         </section>
         <script type="text/javascript" src="j.js"></script>
