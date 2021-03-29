@@ -8,16 +8,31 @@
 function win( width, height ) {
     this.width = width;
     this.height = height;
-    this.usableHeight = 9*height/10;
-    this.usableWidth = 9*width/10;
-    this.xborder = this.width/20;
-    this.yborder = this.height/20;
+    // this.usableHeight = 9*height/10;
+    // this.usableWidth = 9*width/10;
+    this.usableHeight = height;
+    this.usableWidth = width;
+    // this.xborder = this.width/20;
+    // this.yborder = this.height/20;
+    this.xborder = 0;
+    this.yborder = 0;
 }
 
 // leave room for slider below window.
 // Don't have slider, but might want controls.
 // Probably best to get this from HTML, and set it all in CSS
-var w = new win( window.innerWidth, window.innerHeight - 100 );
+var controls = document.getElementById("controls");
+var w = new win( window.innerWidth, window.innerHeight - (controls.clientHeight + 50) );
+
+var video = document.getElementById("vd1");
+video.load();
+video.volume=0;
+video.play();
+var video_height = video.videoHeight;
+var video_width = video.videoWidth;
+console.log ("element vd1: ", video);
+console.log ("video_height: ", video_height);
+console.log ("video_width: ", video_width);
 
 var global = {
     acceleration: 0,
@@ -29,10 +44,17 @@ var global = {
     beat_interval: 0,
     frames_per_beat: 0,
     tick_in_current_beat: 0, 
-    center_line: w.usableWidth/2,
+    // center_line: w.usableWidth/2,
+    center_line: video.offsetWidth/2,
     pattern_top: w.usableHeight,
     metronome_x: 0,
-    bpm: 120,
+    // tray_plane: 50,
+    // throw_line: 75, 
+    // catch_line: 150, 
+    tray_plane: 50,
+    throw_line: video.offsetWidth/4, 
+    catch_line: video.offsetWidth/3, 
+    bpm: 160,
     fps: 30
 };
 
@@ -58,6 +80,7 @@ function point( x, y ) {
     }
 }
 
+var container;
 var canvas;  
 var ctx;
 
@@ -75,7 +98,6 @@ function parabola( point, t ) {
 }
 
 function ball( start_point, start_beat, color, radius ) {
-    // p1 is the start position, p2 is the initial throw position.
     var current_position = start;
     var ticks_since_last_catch = 0;
     var ticks_since_last_throw = 0;
@@ -135,6 +157,9 @@ function init( fps, bpm, pattern_top, center_line ) {
     ctx = canvas.getContext("2d");
     ctx.canvas.width  = w.width;
     ctx.canvas.height = w.height;
+    container = document.getElementById("container");
+    container.height = w.height;
+    console.log( "container height: ", container.height);
     global.fps = fps;
     global.tick_in_current_beat = 0;
     console.log("fps ", fps);
@@ -153,9 +178,14 @@ function init( fps, bpm, pattern_top, center_line ) {
 
 function draw() {
     clear();
-    ctx.fillStyle = "#FAF7F8";
+    //ctx.strokeStyle = "#FAF7F8";
+    //ctx.fillStyle = "#FAF7F8";
+    //ctx.fillStyle = "#FFFFFFFF";
+    ctx.fillStyle = "rgba(0,0,0,0)";
     rect(0,0,w.width,w.height);
-    ctx.fillStyle = "#444444";
+    ctx.fillStyle = "rgba(0,0,0,0)";
+    //ctx.fillStyle = "#444444";
+    //ctx.strokeStyle = "#444444";
 
     // All of the drawing within the animation goes here.
 
@@ -164,6 +194,7 @@ function draw() {
     // Horizontal
 
     var CurrentHeight;
+    /*
     for (CurrentHeight = 0; CurrentHeight < w.height; CurrentHeight+=100) {
         p1 = new point( 0, CurrentHeight );
         p2 = new point( w.width, CurrentHeight );
@@ -181,56 +212,147 @@ function draw() {
         text( label_point, CurrentWidth, 20, "black" )
         line( p1, p2, "#000000", 1 );
     }
+    */
 
-    var sign = ( global.total_beats % 2 === 0 ) ? 1 : -1;
-    var elevation = ( global.total_beats % 2 === 0 ) ? 0 : w.height;
-    var travel = w.height;
-    var travel_per_frame = travel / global.frames_per_beat;
+    function get_normalized_metronome_height ( beat, tick) {
+        var frame_in_current_beat = tick / global.tick_interval;
+        var frame_remaining_in_current_beat
+            = global.frames_per_beat - frame_in_current_beat;
+        var metronome_height
+            = ( beat % 2 === 0 )
+            ? frame_in_current_beat
+            : frame_remaining_in_current_beat;
+        return metronome_height / global.frames_per_beat;
+    };
+
+    var metronome_y_normalized =
+    get_normalized_metronome_height ( beat=global.total_beats, tick=global.tick_in_current_beat);
+
     global.total_ticks +=  global.tick_interval;
     global.total_frames++;
     global.tick_in_current_beat += global.tick_interval;
-    frame_in_current_beat = global.tick_in_current_beat / global.tick_interval;
-    metronome_point = new point( global.metronome_x, elevation + (sign * travel_per_frame * frame_in_current_beat ))
     pattern_top_left = new point( 0, global.pattern_top );
     line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 3 );
-    line( new point( global.metronome_x, 0), metronome_point, "#FF0000", 3 )
+    var metronome_height = global.pattern_top - global.tray_plane;
+    metronome_point = new point(
+        global.metronome_x,
+        metronome_y_normalized * metronome_height + global.tray_plane);
+    line(
+        new point( global.metronome_x, global.tray_plane),
+        metronome_point, "#FF0000", 3 )
     if ( global.tick_in_current_beat >= global.beat_interval ) {
         global.total_beats++;
         global.tick_in_current_beat %= global.beat_interval;
     }
     line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 3 );
+    line( 
+        new point(global.center_line-global.catch_line, 0),
+        new point(global.center_line-global.catch_line, w.height),
+        "#00FFFF", 3
+    );
+    line( 
+        new point(global.center_line+global.catch_line, 0),
+        new point(global.center_line+global.catch_line, w.height),
+        "#00FFFF", 3
+    );
+    line( 
+        new point(global.center_line-global.throw_line, 0),
+        new point(global.center_line-global.throw_line, w.height),
+        "#FFFF00", 3
+    );
+    line( 
+        new point(global.center_line+global.throw_line, 0),
+        new point(global.center_line+global.throw_line, w.height),
+        "#FFFF00", 3
+    );
+    line( new point(0,global.tray_plane), new point(w.width,global.tray_plane), "#0000FF", 3 );
 }
 
 
-var height_slider = document.getElementById("patternMaxHeight");
-height_slider.min = 0;
-height_slider.max = w.usableHeight;
-var height_output = document.getElementById("patternHeight");
-height_output.innerHTML = global.pattern_top;
+var slider_pattern_top = document.getElementById("slider_pattern_top");
+slider_pattern_top.min = 0;
+slider_pattern_top.max = w.usableHeight;
+var pattern_top = document.getElementById("pattern_top");
+pattern_top.innerHTML = global.pattern_top;
 
-var midline_slider = document.getElementById("patternMidLine");
-midline_slider.min = 0;
-midline_slider.max = w.usableWidth;
-var midline_output = document.getElementById("midLine");
-midline_output.innerHTML = global.center_line;
+var slider_pattern_bottom = document.getElementById("slider_pattern_bottom");
+slider_pattern_bottom.min = 0;
+slider_pattern_bottom.max = w.usableHeight;
+slider_pattern_bottom.value = global.tray_plane;
+var pattern_bottom = document.getElementById("pattern_bottom");
+pattern_bottom.innerHTML = global.tray_plane;
+
+var slider_pattern_mid_line = document.getElementById("slider_pattern_mid_line");
+slider_pattern_mid_line.min = 0;
+slider_pattern_mid_line.max = video.offsetWidth;
+var pattern_mid_line = document.getElementById("pattern_mid_line");
+pattern_mid_line.innerHTML = global.center_line;
+
+var slider_pattern_catch_line = document.getElementById("slider_pattern_catch_line");
+slider_pattern_catch_line.min = 0;
+slider_pattern_catch_line.max = video.offsetWidth/2;
+var pattern_catch_line = document.getElementById("pattern_catch_line");
+pattern_catch_line.innerHTML = global.catch_line;
+
+var slider_pattern_throw_line = document.getElementById("slider_pattern_throw_line");
+slider_pattern_throw_line.min = 0;
+slider_pattern_throw_line.max = video.offsetWidth/2;
+var pattern_throw_line = document.getElementById("pattern_throw_line");
+pattern_throw_line.innerHTML = global.throw_line;
+
+video.onplay=function(){
+    var w = video.offsetWidth;
+    var h = video.offsetHeight;
+    canvas = document.getElementById("canvas");
+    canvas.width=w;
+    canvas.height=h;
+    console.log("canvas: ", canvas);
+    canvas.style.visibility="visible";
+};
+
 global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
 
 // Update the current slider value (each time you drag the slider handle)
-height_slider.oninput = function() {
+slider_pattern_top.oninput = function() {
     var pattern_top = Number(this.value);
     var fps = global.fps;
     var bpm = global.bpm;
-    height_output.innerHTML = pattern_top;
+    pattern_top.innerHTML = pattern_top;
     global.interval_id = init( fps, bpm, pattern_top, global.center_line );
 }
 
-midline_slider.oninput = function() {
+slider_pattern_bottom.oninput = function() {
+    global.tray_plane = Number(this.value);
+    var fps = global.fps;
+    var bpm = global.bpm;
+    pattern_bottom.innerHTML = global.tray_plane;
+    global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
+}
+
+slider_pattern_mid_line.oninput = function() {
     var center_line = Number(this.value);
     var fps = global.fps;
     var bpm = global.bpm;
-    midline_output.innerHTML = center_line;
+    pattern_mid_line.innerHTML = center_line;
     global.interval_id = init( fps, bpm, global.pattern_top, center_line );
+}
+
+slider_pattern_catch_line.oninput = function() {
+    global.catch_line = Number(this.value);
+    var fps = global.fps;
+    var bpm = global.bpm;
+    pattern_catch_line.innerHTML = global.catch_line;
+    global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
+}
+
+slider_pattern_throw_line.oninput = function() {
+    global.throw_line = Number(this.value);
+    var fps = global.fps;
+    var bpm = global.bpm;
+    pattern_throw_line.innerHTML = global.throw_line;
+    global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
 }
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
+// http://juggling.tv/video/encoded/7ballflashslowmotionjim-JTV-i17040.mp4

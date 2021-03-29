@@ -3,19 +3,62 @@
     <head>
         <meta charset="UTF-8" />
         <title>Juggling</title>
+<style>
+.container {
+  margin: 0 auto;
+  position: relative;
+}
+
+.video {
+  width: 40%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color:rgba(o,0,0,0);
+  visibility: hidden;
+}
+</style>
     </head>
     <body>
         <section>
-            <div class="slidecontainer">
-              <input type="range" min="100" max="600" value="500" class="slider" id="patternMaxHeight">
-              <p>Pattern Height: <span id="patternHeight"></span></p>
+            <div id="controls">
+            <fieldset>
+                <legend>Pattern</legend>
+                <span>
+                <legend>Top and bottom</legend>
+                <div class="slidecontainer">
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_top">
+                Pattern top: <span id="pattern_top"></span></span>
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_bottom">
+                Pattern bottom: <span id="pattern_bottom"></span></span>
+                </div>
+                </span>
+                <span>
+                <legend>Sides and midline</legend>
+                <div class="slidecontainer">
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_mid_line">
+                Pattern mid line: <span id="pattern_mid_line"></span></span>
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_catch_line">
+                Pattern catch line: <span id="pattern_catch_line"></span></span>
+                <span><input type="range" min="100" max="600" value="500" class="slider" id="slider_pattern_throw_line">
+                Pattern throw line: <span id="pattern_throw_line"></span></span>
+                </div>
+                </span>
+            </fieldset>
             </div>
-            <div class="slidecontainer">
-              <input type="range" min="100" max="600" value="500" class="slider" id="patternMidLine">
-              <p>Pattern Mid Line: <span id="midLine"></span></p>
-            </div>
-            <div>
-                <canvas id="canvas" width="400" height="300">
+        </section>
+        <section>
+            <div id="container" class="container">
+                <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_160bpm.mp4" ></video>
+                <canvas id="canvas">
                  This text is displayed if your browser 
                  does not support HTML5 Canvas.
                 </canvas>
