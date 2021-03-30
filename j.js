@@ -161,6 +161,8 @@ function init( fps, bpm, pattern_top, center_line ) {
     container.height = w.height;
     console.log( "container height: ", container.height);
     global.fps = fps;
+    global.bpm = bpm;
+    console.log("bpm ", bpm);
     global.tick_in_current_beat = 0;
     console.log("fps ", fps);
     global.tick_interval = fps_interval(fps);
@@ -300,6 +302,13 @@ slider_pattern_throw_line.max = video.offsetWidth/2;
 var pattern_throw_line = document.getElementById("pattern_throw_line");
 pattern_throw_line.innerHTML = global.throw_line;
 
+var slider_bpm = document.getElementById("slider_bpm");
+slider_bpm.min = 30;
+slider_bpm.max = 600;
+slider_bpm.value = global.bpm;
+var bpm_element = document.getElementById("bpm");
+bpm_element.innerHTML = global.bpm;
+
 video.onplay=function(){
     var w = video.offsetWidth;
     var h = video.offsetHeight;
@@ -350,6 +359,13 @@ slider_pattern_throw_line.oninput = function() {
     var fps = global.fps;
     var bpm = global.bpm;
     pattern_throw_line.innerHTML = global.throw_line;
+    global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
+}
+
+slider_bpm.oninput = function() {
+    var bpm = Number(this.value);
+    var fps = global.fps;
+    bpm_element.innerHTML = bpm;
     global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
 }
 
