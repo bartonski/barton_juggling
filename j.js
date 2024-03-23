@@ -371,4 +371,6 @@ slider_bpm.oninput = function() {
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
+// See: https://jsfiddle.net/m1erickson/AGd6u/ for how to drag elements on canvas.
+// Also: https://stackoverflow.com/questions/5559248/how-to-create-a-draggable-line-in-html5-canvas
 // http://juggling.tv/video/encoded/7ballflashslowmotionjim-JTV-i17040.mp4
