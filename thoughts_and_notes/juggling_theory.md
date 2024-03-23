@@ -132,8 +132,9 @@ How much do individual throws vary from the average throw in a juggling pattern?
 
 * Focus, in order of importance:
     1. Rhythm / Tempo
-    1. Wall plane
+    1. Wall plane / scoop
     1. Know exactly where your throw, catch and corners are
+    1. Hands can be in a limited range of positions -- as far up and down as youcan reach, as far left and right as you can reatch, as far forward and backward as you can reach. In order to be caught, a prop muss pass through this space. Its path is a 'tube' through this space. Know where this tube is for each throw, and make the throw so that the 'catch tube' is in the most catchable place.
     1. Left and right hands must be the same
     1. Know where your elbows are at all times
     1. Preparation at the bottom of the scoop
@@ -159,3 +160,10 @@ How much do individual throws vary from the average throw in a juggling pattern?
     * Learn as much as you can from each drop
     * If you don't know why you dropped, that should tell you that you're not paying attention to something
     * If you're dropping too much, back up to an easier step and get it perfect
+* Practice your juggling grip.
+* Try varying scoop size?
+* Feel where your hands are as you make the scoop, and use this as a guide when
+correcting throws (this is important, and should be higher up).
+* If you draw a right triangle with the base being the throw and catch points the height of the triangle is four times the height of a parabola with the equivalent throw angle.
+* When juggling clubs, you're juggling the center of gravity of the clubs.
+* Throw and catch happen in the tray plane, meaning that the forearm is paralell to the floor.
