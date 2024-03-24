@@ -1,1 +1,3 @@
-# barton_juggling
+# Barton Juggling
+
+* [Juggling Trainer Notes](./juggling_trainer.md)

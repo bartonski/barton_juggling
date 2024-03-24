@@ -3,11 +3,87 @@
     <head>
         <meta charset="UTF-8" />
         <title>Juggling</title>
+<style>
+.container {
+  margin: 0 auto;
+  position: relative;
+}
+
+.video {
+  width: 60%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color:rgba(o,0,0,0);
+  visibility: hidden;
+}
+</style>
     </head>
     <body>
         <section>
-            <div>
-                <canvas id="canvas" width="400" height="300">
+            <div id="controls">
+            <fieldset>
+                <legend>Pattern</legend>
+                <span>
+                <legend>Top and bottom</legend>
+                    <div class="slidecontainer">
+                        <span>
+                            <label for="slider_pattern_top">Pattern top: </label>
+                            <input type="range" class="slider" id="slider_pattern_top">
+                            <span id="pattern_top"></span>
+                        </span>
+                        <span>
+                            <label for="slider_pattern_bottom">Pattern bottom: </label>
+                            <input type="range" class="slider" id="slider_pattern_bottom">
+                            <span id="pattern_bottom"></span>
+                        </span>
+                    </div>
+                </span>
+                <span>
+                    <legend>Sides and midline</legend>
+                    <div class="slidecontainer">
+                        <span>
+                            <label for="slider_pattern_mid_line">Pattern mid line: </label>
+                            <input type="range" class="slider" id="slider_pattern_mid_line">
+                            <span id="pattern_mid_line"></span>
+                        </span>
+                        <span>
+                            <label for="slider_pattern_catch_line">Pattern catch line: </label>
+                            <input type="range" class="slider" id="slider_pattern_catch_line">
+                            <span id="pattern_catch_line"></span>
+                        </span>
+                        <span>
+                            <label for="slider_pattern_throw_line">Pattern throw line: </label>
+                            <input type="range" class="slider" id="slider_pattern_throw_line">
+                            <span id="pattern_throw_line"></span>
+                        </span>
+                    </div>
+                </span>
+                <span>
+                    <legend>Timing</legend>
+                    <div class="slidecontainer">
+                        <span>
+                            <label for="slider_bpm">BPM: </label>
+                            <input type="range" class="slider" id="slider_bpm">
+                            <span id="bpm"></span>
+                        </span>
+                    </div>
+                </span>
+            </fieldset>
+            </div>
+        </section>
+        <section>
+            <div id="container" class="container">
+                <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_230bpm.2.mp4" ></video>
+                <canvas id="canvas">
                  This text is displayed if your browser 
                  does not support HTML5 Canvas.
                 </canvas>
