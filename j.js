@@ -234,40 +234,40 @@ function draw() {
     global.total_frames++;
     global.tick_in_current_beat += global.tick_interval;
     pattern_top_left = new point( 0, global.pattern_top );
-    line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 3 );
+    line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 2 );
     var metronome_height = global.pattern_top - global.tray_plane;
     metronome_point = new point(
         global.metronome_x,
         metronome_y_normalized * metronome_height + global.tray_plane);
     line(
         new point( global.metronome_x, global.tray_plane),
-        metronome_point, "#FF0000", 3 )
+        metronome_point, "#FF0000", 4 )
     if ( global.tick_in_current_beat >= global.beat_interval ) {
         global.total_beats++;
         global.tick_in_current_beat %= global.beat_interval;
     }
-    line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 3 );
+    line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 2 );
     line( 
         new point(global.center_line-global.catch_line, 0),
         new point(global.center_line-global.catch_line, w.height),
-        "#00FFFF", 3
+        "#00FFFF", 2
     );
     line( 
         new point(global.center_line+global.catch_line, 0),
         new point(global.center_line+global.catch_line, w.height),
-        "#00FFFF", 3
+        "#00FFFF", 2
     );
     line( 
         new point(global.center_line-global.throw_line, 0),
         new point(global.center_line-global.throw_line, w.height),
-        "#FFFF00", 3
+        "#FFFF00", 2
     );
     line( 
         new point(global.center_line+global.throw_line, 0),
         new point(global.center_line+global.throw_line, w.height),
-        "#FFFF00", 3
+        "#FFFF00", 2
     );
-    line( new point(0,global.tray_plane), new point(w.width,global.tray_plane), "#0000FF", 3 );
+    line( new point(0,global.tray_plane), new point(w.width,global.tray_plane), "#0000FF", 2 );
 }
 
 
@@ -371,4 +371,6 @@ slider_bpm.oninput = function() {
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
+// See: https://jsfiddle.net/m1erickson/AGd6u/ for how to drag elements on canvas.
+// Also: https://stackoverflow.com/questions/5559248/how-to-create-a-draggable-line-in-html5-canvas
 // http://juggling.tv/video/encoded/7ballflashslowmotionjim-JTV-i17040.mp4
