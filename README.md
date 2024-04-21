@@ -23,7 +23,7 @@ Thoughts, tidbits, resources to keep track of
 Concepts that have more structure, but are still being refined
 
 * [Juggling Trainer Notes](./juggling_trainer.md)
-* [Juggling Theory](.thoughts_and_notes/juggling_theory.md)
+* [Juggling Theory](./thoughts_and_notes/juggling_theory.md)
 
 ## Essays
 
