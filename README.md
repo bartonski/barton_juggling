@@ -31,14 +31,5 @@ Fully structured and refined ideas about juggling
 
 ## Programs
 
-* [Juggling Detector](https://github.com/bartonski/juggling_detector)
+* [Juggling projects on Github](./thoughts_and_notes/github_juggling_projects.md)
 
-### Juggling Tracker and Siteswap Extractor
-
-* [Original, by AlejandroAlonsoG](https://github.com/AlejandroAlonsoG/tfg_jugglingTrackingSiteswap)
-* [Translation (using Google Translate) by Barton Chittenden](https://github.com/bartonski/tfg_jugglingTrackingSiteswap/tree/english_translation)
-* [Config Writer -- Uses Alejandro's code as the starting point for a color extractor and configuration writer](https://github.com/bartonski/tfg_jugglingTrackingSiteswap/tree/config_writer)
-
-### Stephen Meschke's ***Juggling***
-
-* [Stephen Meschke's ***Juggling***](https://github.com/smeschke/juggling)
