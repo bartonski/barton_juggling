@@ -4,11 +4,13 @@
 
 * [Juggling Detector](https://github.com/bartonski/juggling_detector) -- My juggling Detector/Tracker. By no means, the best.
 
-### Juggling Tracker and Siteswap Extractor
+#### Juggling Tracker and Siteswap Extractor
 
 * [Original, by AlejandroAlonsoG](https://github.com/AlejandroAlonsoG/tfg_jugglingTrackingSiteswap)
 * [Translation (using Google Translate) by Barton Chittenden](https://github.com/bartonski/tfg_jugglingTrackingSiteswap/tree/english_translation)
 * [Config Writer -- Uses Alejandro's code as the starting point for a color extractor and configuration writer](https://github.com/bartonski/tfg_jugglingTrackingSiteswap/tree/config_writer)
+
+#### Others
 
 * [Juggling_Pattern_Recognition](https://github.com/kaijaz123/Juggling_Pattern_Recognition) -- Very impressive. Well organized source code, solid hand detection.
 * [Stephen Meschke's ***Juggling***](https://github.com/smeschke/juggling)
