@@ -1,5 +1,12 @@
 ## Computer Vision Juggling Detectors and Trackers
 
+These programs generally use OpenCV2 to identify the props being juggled. In some cases they may also detect the movemnts of hands and/or the position of the body (i.e. pose detection).
+The goals of the programs are one or more of the following:
+
+* Count throws
+* Siteswap identification
+* Timing and accuracy measurement
+
 ### Python
 
 * [Juggling Detector](https://github.com/bartonski/juggling_detector) -- My juggling Detector/Tracker. By no means, the best.
