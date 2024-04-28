@@ -18,18 +18,15 @@ function win( width, height ) {
     this.yborder = 0;
 }
 
-// leave room for slider below window.
-// Don't have slider, but might want controls.
-// Probably best to get this from HTML, and set it all in CSS
 var controls = document.getElementById("controls");
-var w = new win( window.innerWidth, window.innerHeight - (controls.clientHeight + 50) );
+var w = new win( window.innerWidth, window.innerHeight );
 
 var video = document.getElementById("vd1");
 video.load();
 video.volume=0;
 video.play();
-var video_height = video.videoHeight;
-var video_width = video.videoWidth;
+var video_height = video.offsetHeight;
+var video_width = video.offsetWidth;
 console.log ("element vd1: ", video);
 console.log ("video_height: ", video_height);
 console.log ("video_width: ", video_width);
@@ -44,19 +41,17 @@ var global = {
     beat_interval: 0,
     frames_per_beat: 0,
     tick_in_current_beat: 0, 
-    // center_line: w.usableWidth/2,
     center_line: video.offsetWidth/2,
-    pattern_top: w.usableHeight,
+    pattern_top: video.offsetHeight,
     metronome_x: 0,
-    // tray_plane: 50,
-    // throw_line: 75, 
-    // catch_line: 150, 
     tray_plane: 50,
-    throw_line: video.offsetWidth/4, 
+    throw_line: video.offsetWidth/10, 
     catch_line: video.offsetWidth/3, 
     bpm: 160,
     fps: 30
 };
+
+resize_canvas(video)
 
 function point( x, y ) {
     this.x = x;
@@ -153,6 +148,8 @@ function fps_interval(fps) {
 }
 
 function init( fps, bpm, pattern_top, center_line ) {
+    w.width=video.offsetWidth
+    w.height=video.offsetHeight
     console.log("In init");
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
@@ -160,6 +157,7 @@ function init( fps, bpm, pattern_top, center_line ) {
     ctx.canvas.height = w.height;
     container = document.getElementById("container");
     container.height = w.height;
+    container.width = w.width;
     console.log( "container height: ", container.height);
     global.fps = fps;
     global.bpm = bpm;
@@ -272,13 +270,14 @@ function draw() {
 
 var slider_pattern_top = document.getElementById("slider_pattern_top");
 slider_pattern_top.min = 0;
-slider_pattern_top.max = w.usableHeight;
+slider_pattern_top.max = video.offsetHeight;
+slider_pattern_top.value = video.offsetHeight * 0.75;
 var pattern_top = document.getElementById("pattern_top");
 pattern_top.innerHTML = global.pattern_top;
 
 var slider_pattern_bottom = document.getElementById("slider_pattern_bottom");
 slider_pattern_bottom.min = 0;
-slider_pattern_bottom.max = w.usableHeight;
+slider_pattern_bottom.max = video.offsetHeight;
 slider_pattern_bottom.value = global.tray_plane;
 var pattern_bottom = document.getElementById("pattern_bottom");
 pattern_bottom.innerHTML = global.tray_plane;
@@ -286,18 +285,21 @@ pattern_bottom.innerHTML = global.tray_plane;
 var slider_pattern_mid_line = document.getElementById("slider_pattern_mid_line");
 slider_pattern_mid_line.min = 0;
 slider_pattern_mid_line.max = video.offsetWidth;
+slider_pattern_mid_line.value = video.offsetWidth/2;
 var pattern_mid_line = document.getElementById("pattern_mid_line");
 pattern_mid_line.innerHTML = global.center_line;
 
 var slider_pattern_catch_line = document.getElementById("slider_pattern_catch_line");
 slider_pattern_catch_line.min = 0;
 slider_pattern_catch_line.max = video.offsetWidth/2;
+slider_pattern_catch_line.value = video.offsetWidth/3;
 var pattern_catch_line = document.getElementById("pattern_catch_line");
 pattern_catch_line.innerHTML = global.catch_line;
 
 var slider_pattern_throw_line = document.getElementById("slider_pattern_throw_line");
 slider_pattern_throw_line.min = 0;
 slider_pattern_throw_line.max = video.offsetWidth/2;
+slider_pattern_throw_line.value = video.offsetWidth/10;
 var pattern_throw_line = document.getElementById("pattern_throw_line");
 pattern_throw_line.innerHTML = global.throw_line;
 
@@ -308,25 +310,42 @@ slider_bpm.value = global.bpm;
 var bpm_element = document.getElementById("bpm");
 bpm_element.innerHTML = global.bpm;
 
+function resize_container(element) {
+    var w  = element.offsetWidth;
+    var h  = element.offsetHeight;
+    var container = document.getElementById("container");
+    container.width  = w;
+    container.height = h;
+}
+
+function resize_canvas(element) {
+    var w  = element.offsetWidth;
+    var h  = element.offsetHeight;
+    var cv = document.getElementById("canvas");
+    cv.width  = w;
+    cv.height = h;
+}
+
 video.onplay=function(){
-    var w = video.offsetWidth;
-    var h = video.offsetHeight;
+    resize_canvas(video)
     canvas = document.getElementById("canvas");
-    canvas.width=w;
-    canvas.height=h;
+    console.log("video width: ", video.offsetWidth )
+    console.log("video height: ", video.offsetHeight )
+    console.log("canvas width: ", canvas.width )
+    console.log("canvas height: ", canvas.height )
     console.log("canvas: ", canvas);
     canvas.style.visibility="visible";
 };
 
-global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
 
 // Update the current slider value (each time you drag the slider handle)
 slider_pattern_top.oninput = function() {
-    var pattern_top = Number(this.value);
+    global.pattern_top = Number(this.value);
+    /*var pattern_top = Number(this.value);*/
     var fps = global.fps;
     var bpm = global.bpm;
-    pattern_top.innerHTML = pattern_top;
-    global.interval_id = init( fps, bpm, pattern_top, global.center_line );
+    pattern_top.innerHTML = global.pattern_top;
+    global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
 }
 
 slider_pattern_bottom.oninput = function() {
@@ -367,6 +386,18 @@ slider_bpm.oninput = function() {
     bpm_element.innerHTML = bpm;
     global.interval_id = init( fps, bpm, global.pattern_top, global.center_line );
 }
+
+window.addEventListener('load', function() {
+    resize_container(video);
+    resize_canvas(video);
+
+    global.interval_id = init( global.fps, global.bpm, global.pattern_top, global.center_line );
+
+    console.log ("element vd1: ", video);
+    console.log ("video_height: ", video_height);
+    console.log ("video_width: ", video_width);
+
+})
 
 // See: https://design.tutsplus.com/articles/human-anatomy-fundamentals-basic-body-proportions--vector-18254
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
