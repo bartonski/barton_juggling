@@ -47,6 +47,7 @@ var global = {
     tray_plane: 50,
     throw_line: video.offsetWidth/10, 
     catch_line: video.offsetWidth/3, 
+    line_width: 10,
     bpm: 160,
     fps: 30
 };
@@ -231,7 +232,7 @@ function draw() {
     global.total_frames++;
     global.tick_in_current_beat += global.tick_interval;
     pattern_top_left = new point( 0, global.pattern_top );
-    line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF", 2 );
+    line( pattern_top_left, new point(w.width, global.pattern_top),  "#0000FF7F", global.line_width );
     var metronome_height = global.pattern_top - global.tray_plane;
     metronome_point = new point(
         global.metronome_x,
@@ -243,28 +244,28 @@ function draw() {
         global.total_beats++;
         global.tick_in_current_beat %= global.beat_interval;
     }
-    line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF00", 2 );
+    line( new point(global.center_line, 0), new point(global.center_line, w.height), "#00FF007F", global.line_width );
     line( 
         new point(global.center_line-global.catch_line, 0),
         new point(global.center_line-global.catch_line, w.height),
-        "#00FFFF", 2
+        "#00FFFF7F", global.line_width
     );
     line( 
         new point(global.center_line+global.catch_line, 0),
         new point(global.center_line+global.catch_line, w.height),
-        "#00FFFF", 2
+        "#00FFFF7F", global.line_width
     );
     line( 
         new point(global.center_line-global.throw_line, 0),
         new point(global.center_line-global.throw_line, w.height),
-        "#FFFF00", 2
+        "#FFFF007F", global.line_width
     );
     line( 
         new point(global.center_line+global.throw_line, 0),
         new point(global.center_line+global.throw_line, w.height),
-        "#FFFF00", 2
+        "#FFFF007F", global.line_width
     );
-    line( new point(0,global.tray_plane), new point(w.width,global.tray_plane), "#0000FF", 2 );
+    line( new point(0,global.tray_plane), new point(w.width,global.tray_plane), "#0000FF7F", global.line_width );
 }
 
 
