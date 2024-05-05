@@ -404,4 +404,6 @@ window.addEventListener('load', function() {
 // See: https://jsfiddle.net/7sk5k4gp/13/ for how to overlay canvas over video.
 // See: https://jsfiddle.net/m1erickson/AGd6u/ for how to drag elements on canvas.
 // Also: https://stackoverflow.com/questions/5559248/how-to-create-a-draggable-line-in-html5-canvas
+// See: https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server for how to download files (if I want to save data as json)
+// See: https://www.petercollingridge.co.uk/tutorials/svg/interactive/dragging/ Dragging SVG
 // http://juggling.tv/video/encoded/7ballflashslowmotionjim-JTV-i17040.mp4
