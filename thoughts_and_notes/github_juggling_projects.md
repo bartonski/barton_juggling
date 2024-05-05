@@ -6,6 +6,7 @@ The goals of the programs are one or more of the following:
 * Count throws
 * Siteswap identification
 * Timing and accuracy measurement
+* Measure juggling tempo and dwell time
 
 ### Python
 
