@@ -52,3 +52,4 @@ The goals of the programs are one or more of the following:
 * [Juggling Counting](https://github.com/vrizawahyu22/juggling_counting) -- Count soccer juggling kicks. Interesting for use of YOLOv8 Object Detection, Object Tracking, and Pose Detection
 * [Fuzzwah/juggle-music](https://github.com/Fuzzwah/juggle-music) -- Juggle to trigger playback of samples.
 * [Juggling_Balls_Public](https://github.com/arkadiraf/Juggling_Balls_Public)
+* [freemocap/freemocap](https://github.com/freemocap/freemocap) -- Not specifically juggling related, although it has been used that way.
