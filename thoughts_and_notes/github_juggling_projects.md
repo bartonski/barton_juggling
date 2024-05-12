@@ -7,6 +7,12 @@ The goals of the programs are one or more of the following:
 * Siteswap identification
 * Timing and accuracy measurement
 * Measure juggling tempo and dwell time
+* Create a library of juggling data
+
+A couple of other possible uses
+
+* Create shareable files that record different juggling patterns
+* Create input for various juggling similators -- JoePass, Jongl, Jugglemaster, etc.
 
 ### Python
 
