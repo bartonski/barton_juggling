@@ -27,9 +27,9 @@ A couple of other possible uses
 #### Others
 
 * [Juggling_Pattern_Recognition](https://github.com/kaijaz123/Juggling_Pattern_Recognition) -- Very impressive. Well organized source code, solid hand detection.
-* [KaiSmith/JuggleTracker](https://github.com/KaiSmith/JuggleTracker) -- Readme shows thought about the challenges of the problem, code uses classes that might be useful.
+* [KaiSmith/JuggleTracker](https://github.com/KaiSmith/JuggleTracker) -- Readme shows thought about the challenges of the problem. Has nice 'Ball' and 'Pattern' classes.
 * [Stephen Meschke's ***Juggling***](https://github.com/smeschke/juggling) -- Noted in Alejandro's paper.
-* [NattyBumppo/Ball-Tracking](https://github.com/NattyBumppo/Ball-Tracking) -- Impressive trajectory prediction
+* [NattyBumppo/Ball-Tracking](https://github.com/NattyBumppo/Ball-Tracking) -- Impressive trajectory prediction. The academic paper [Basic State Estimator to Track Juggling Balls in Video Data](https://github.com/NattyBumppo/Ball-Tracking/blob/master/paper/sample.pdf) is an excellent analysis of the problem.
 * [conta-bolas](https://github.com/ocarneiro/conta-bolas) -- Python OpenCV juggling balls counter
 * [rtylerlucas/JuggleTracking](https://github.com/rtylerlucas/JuggleTracking)
 * [juggle_counter](https://github.com/jorgem0/juggle_counter/tree/master)
