@@ -107,7 +107,6 @@ function Grab(evt)
     }
 };
 
-
 function Drag(evt)
 {
     // account for zooming and panning
@@ -132,6 +131,16 @@ function Drag(evt)
     else {
         DragTarget.setAttributeNS(null, 'transform', 'translate(' + newX + ',' + newY + ')');
     }
+
+    // If DragTarget is vertical, we will need to reposition other lines as follows:
+    //
+    // If class is 'right', take the difference between the center line and X. New
+    // X value for 'left' is the center line minus the difference.
+    // If class is 'left', take the difference between the center line and X. New
+    // X value for 'right' is the center line plust the difference.
+    //
+    // If the class is neither left nor right, it is the center line. Translate
+    // all lines by the same amount that we just translated the center line.
     }
 };
 
