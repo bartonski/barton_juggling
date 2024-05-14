@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Juggling</title>
+<style>
+html {
+  height: 100%;
+  width: 100%;
+}
+body, section {
+  height: inherit;
+  width: inherit;
+}
+.container {
+  margin: 0 auto;
+  position: relative;
+  width: inherit;
+  height: inherit;
+}
+
+.video {
+  width: 60%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#lines {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  # width: 60%;
+  background-color:rgba(0,0,0,0);
+}
+
+#basic_info {
+  display: none;
+}
+</style>
+    </head>
+    <body>
+        <section>
+            <div id="container" class="container">
+                <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_230bpm.2.mp4" ></video>
+                <div id="svgContainer" class="container">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="lines"
+                         onload='Init(evt)'
+                         onmousedown='Grab(evt)'
+                         onmousemove='Drag(evt)'
+                         onmouseup='Drop(evt)'>
+                        <rect id='BackDrop' x='-10%' y='-10%' width='110%' height='110%' fill='none' pointer-events='all' />
+                        <rect id='CenterLine' class='vertical' x='50%' y='0' width='10' height='100%' style='fill:green; '>
+                            <title>Center Line</title>
+                        </rect>
+                        <rect id='ThrowLineLeft' class='vertical throw left' x='40%' y='0' width='10' height='100%' style='fill:yellow; '><title>Throw Line Left</title></rect>
+                        <rect id='ThrowLineRight' class='vertical throw right' x='60%' y='0' width='10' height='100%' style='fill:yellow; '><title>Throw Line Right</title></rect>
+                        <rect id='CatchLineLeft' class='vertical catch left' x='30%' y='0' width='10' height='100%' style='fill:lightblue; '><title>Catch Line Left</title></rect>
+                        <rect id='CatchLineRight' class='vertical catch right' x='70%' y='0' width='10' height='100%' style='fill:lightblue; '><title>Catch Line Right</title></rect>
+                        <rect id='PatternCeiling' class='horizontal' x='0' y='25%' width='100%' height='10' style='fill:blue; '><title>Pattern Ceiling</title></rect>
+                        <rect id='PatternFloor' class='horizontal' x='0' y='75%' width='100%' height='10' style='fill:blue; '><title>Tray Plane</title></rect>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript" src="j.js"></script>
+    </body>
+</html>
