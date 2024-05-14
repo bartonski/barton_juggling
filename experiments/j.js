@@ -147,19 +147,6 @@ function Drop(evt)
 
     // turn the pointer-events back on, so we can grab this item later
     DragTarget.setAttributeNS(null, 'pointer-events', 'all');
-    if ( 'Folder' == targetElement.parentNode.id )
-    {
-        // if the dragged element is dropped on an element that is a child
-        //    of the folder group, it is inserted as a child of that group
-        targetElement.parentNode.appendChild( DragTarget );
-        // alert(DragTarget.id + ' has been dropped into a folder, and has been inserted as a child of the containing group.');
-    }
-    else
-    {
-        // for this example, you cannot drag an item out of the folder once it's in there;
-        //    however, you could just as easily do so here
-        // alert(DragTarget.id + ' has been dropped on top of ' + targetElement.id);
-    }
 
     // set the global variable to null, so nothing will be dragged until we
     //    grab the next element
