@@ -55,6 +55,7 @@ A couple of other possible uses
 ## Other Projects
 
 * [jugglemaster](https://github.com/perjg/jugglemaster) -- Site Swap Animator
+* [jkboyce/jugglinglab: Juggling Lab juggling animator](https://github.com/jkboyce/jugglinglab)
 * [Juggling Counting](https://github.com/vrizawahyu22/juggling_counting) -- Count soccer juggling kicks. Interesting for use of YOLOv8 Object Detection, Object Tracking, and Pose Detection
 * [Fuzzwah/juggle-music](https://github.com/Fuzzwah/juggle-music) -- Juggle to trigger playback of samples.
 * [Juggling_Balls_Public](https://github.com/arkadiraf/Juggling_Balls_Public)
