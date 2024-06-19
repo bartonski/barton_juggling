@@ -107,6 +107,14 @@ function Grab(evt)
     }
 };
 
+function dragAllVertical( newX ) {
+    var verticalLines=document.getElementsByClassName('vertical');
+    for(var i = 0; i < verticalLines.length; i++) {
+        verticalLines[i].setAttributeNS(null, 'transform', 'translate(' + newX + ',' + 0 + ')');
+        console.log("vertical: ", verticalLines[i] );
+    }
+}
+
 function Drag(evt)
 {
     // account for zooming and panning
@@ -120,27 +128,48 @@ function Drag(evt)
     var newX = TrueCoords.x - GrabPoint.x;
     var newY = TrueCoords.y - GrabPoint.y;
 
+    var str=DragTarget.className.baseVal;
+    var classList = str.split(" ");
+    // console.log("DragTarget classList", classList );
+
     // apply a new tranform translation to the dragged element, to display
     //    it in its new location
-    if( DragTarget.className.baseVal == 'vertical' ) {
-        DragTarget.setAttributeNS(null, 'transform', 'translate(' + newX + ',' + 0 + ')');
+    if( classList[0] == 'vertical' ) {
+        if( classList[1] == 'center' ) {
+            dragAllVertical( newX )
+        } else {
+            DragTarget.setAttributeNS(null, 'transform', 'translate(' + newX + ',' + 0 + ')');
+        }
     }
-    else if( DragTarget.className.baseVal == 'horizontal' ) {
+    else if( classList[0] == 'horizontal' ) {
         DragTarget.setAttributeNS(null, 'transform', 'translate(' + 0 + ',' + newY + ')');
     }
     else {
         DragTarget.setAttributeNS(null, 'transform', 'translate(' + newX + ',' + newY + ')');
     }
 
+    // if( DragTarget.className.baseVal == 'vertical' ) {
+    //     if( DragTarget.className.baseVal == 'right' ) {
+    //         console.log ("vertical right DragTarget: ", DragTarget);
+    //     } else if( DragTarget.className.baseVal == 'left' ) {
+    //         console.log ("vertical left DragTarget: ", DragTarget);
+    //     } else {
+    //         console.log ("Center Line: ", DragTarget);
+    //     }
+    // }
+
     // If DragTarget is vertical, we will need to reposition other lines as follows:
     //
     // If class is 'right', take the difference between the center line and X. New
     // X value for 'left' is the center line minus the difference.
     // If class is 'left', take the difference between the center line and X. New
-    // X value for 'right' is the center line plust the difference.
+    // X value for 'right' is the center line plus the difference.
     //
     // If the class is neither left nor right, it is the center line. Translate
-    // all lines by the same amount that we just translated the center line.
+    // all vertical lines by the same amount that we just translated the center line.
+    // If the distance between the center line and the left or right edge of the
+    // frame is greater than Wc, Wc is equal to that distance, and the corresponding
+    // catch line on the other side is adjusted accordingly.
     }
 };
 
@@ -174,12 +203,19 @@ function GetTrueCoords(evt)
     TrueCoords.y = (evt.clientY - translation.y)/newScale;
 };
 
-window.addEventListener('load', function() {
+// window.onresize( function() {
+//     resize_container(video);
+//     resize_svg(video);
+// })
+
+function resizeVideo() {
     resize_container(video);
     resize_svg(video);
 
     console.log ("element vd1: ", video);
     console.log ("video_height: ", video_height);
     console.log ("video_width: ", video_width);
+}
 
-})
+window.onload = resizeVideo
+window.onresize = resizeVideo
