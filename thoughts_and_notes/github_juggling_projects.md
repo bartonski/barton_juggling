@@ -18,6 +18,13 @@ A couple of other possible uses
 
 * [Juggling Detector](https://github.com/bartonski/juggling_detector) -- My juggling Detector/Tracker. By no means, the best.
 
+### Siteswap Inference and analysis
+
+This is the best, most complete juggling tracker that I'm aware of -- Under the right circumstances, it can determine the siteswap being juggled in real time. Source code has not yet been released.
+
+* [GitHub - Jamesmcozens/Bimodal-Multi-Object-Localisation-Siteswap-Inference-and-Analysis-for-Competitive-Juggling: The project objective is to provide a generalised real-time and non-real-time multi-object juggling tracker capable of accurately inferring siteswap sequences, beat positions, various tracked component spatial derivatives, and performance evaluation metrics for a variety of conditions](https://github.com/Jamesmcozens/Bimodal-Multi-Object-Localisation-Siteswap-Inference-and-Analysis-for-Competitive-Juggling)
+
+
 #### Juggling Tracker and Siteswap Extractor
 
 * [Original, by AlejandroAlonsoG](https://github.com/AlejandroAlonsoG/tfg_jugglingTrackingSiteswap)
