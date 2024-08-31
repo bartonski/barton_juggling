@@ -1,12 +1,65 @@
-var video = document.getElementById("vd1"); 
-video.load();
-video.volume=0;
-video.play();
-var video_height = video.offsetHeight;
-var video_width = video.offsetWidth;
-console.log ("element vd1: ", video);
-console.log ("video_height: ", video_height);
-console.log ("video_width: ", video_width);
+function loadVideo() {
+    file = this.files[0];
+    console.log( "file: ", file );
+    console.log( "file type: ", file.type);
+
+    // const video = document.createElement("video");
+    video.classList.add("obj");
+    video.setAttribute('id', 'vd1');
+    video.file = file;
+    container.insertBefore(video, svgContainer);
+    // svgContainer.chilren[0]
+    // svgContainer.appendChild(video); // Assuming that "preview" is the div output where the content will be displayed.
+
+    const reader = new FileReader();
+    reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(video);
+    reader.readAsDataURL(file);
+    video.volume = 0;
+    video.loop = 1;
+    video.play();
+    video.onloadeddata = ( function() {
+        console.log ("in loadVideo: ")
+        console.log ("    element vd1: ", video);
+        console.log ("    video.offsetHeight: ", video.offsetHeight);
+        console.log ("    video.offsetWidth: ", video.offsetWidth);
+        video_height = video.offsetHeight;
+        video_width = video.offsetWidth;
+        console.log ("    video_height: ", video_height);
+        console.log ("    video_width: ", video_width);
+        console.log ("    before resizeVideo")
+        resizeVideo();
+        console.log ("    after resizeVideo")
+    });
+}
+
+var container = document.getElementById("container"); 
+var svgContainer = document.getElementById("svgContainer");
+
+// SVG Manipulation
+
+var SVGDocument = null;
+var SVGRoot = null;
+
+var TrueCoords = null;
+var GrabPoint = null;
+var BackDrop = null;
+var DragTarget = null;
+
+// Video variables
+
+const video = document.createElement("video");
+var video_height = null;
+var video_width = null;
+
+document.getElementById("uploadInput").addEventListener("change", loadVideo, false);
+
+//var video = document.getElementById("vd1"); 
+//video.load();
+//video.volume=0;
+//video.play();
+// console.log ("element vd1: ", video);
+// console.log ("video_height: ", video_height);
+// console.log ("video_width: ", video_width);
 
 var global = {
     acceleration: 0,
@@ -36,18 +89,6 @@ function resize_container(element) {
     container.width  = w;
     container.height = h;
 }
-
-var container = document.getElementById("container"); 
-
-// SVG Manipulation
-
-var SVGDocument = null;
-var SVGRoot = null;
-
-var TrueCoords = null;
-var GrabPoint = null;
-var BackDrop = null;
-var DragTarget = null;
 
 function resize_svg(element) {
     var w  = element.offsetWidth;
@@ -111,7 +152,7 @@ function dragAllVertical( newX ) {
     var verticalLines=document.getElementsByClassName('vertical');
     for(var i = 0; i < verticalLines.length; i++) {
         verticalLines[i].setAttributeNS(null, 'transform', 'translate(' + newX + ',' + 0 + ')');
-        console.log("vertical: ", verticalLines[i] );
+        // console.log("vertical: ", verticalLines[i] );
     }
 }
 
@@ -211,11 +252,15 @@ function GetTrueCoords(evt)
 function resizeVideo() {
     resize_container(video);
     resize_svg(video);
+    video_height = video.offsetHeight;
+    video_width = video.offsetWidth;
 
-    console.log ("element vd1: ", video);
-    console.log ("video_height: ", video_height);
-    console.log ("video_width: ", video_width);
+    console.log ("in resizeVideo: ")
+    console.log ("    element vd1: ", video);
+    console.log ("    video_height: ", video_height);
+    console.log ("    video_width: ", video_width);
 }
 
 window.onload = resizeVideo
+//video.onload = resizeVideo
 window.onresize = resizeVideo

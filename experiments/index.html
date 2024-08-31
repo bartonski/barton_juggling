@@ -3,48 +3,53 @@
     <head>
         <meta charset="UTF-8" />
         <title>Juggling</title>
-<style>
-html {
-  height: 100%;
-  width: 100%;
-}
-body, section {
-  height: inherit;
-  width: inherit;
-}
-.container {
-  margin: 0 auto;
-  position: relative;
-  width: inherit;
-  height: inherit;
-}
+        <style>
+            html {
+                height: 100%;
+                width: 100%;
+            }
 
-.video {
-  width: 60%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+            body, section {
+                height: inherit;
+                width: inherit;
+            }
 
-#lines {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  # width: 60%;
-  background-color:rgba(0,0,0,0);
-}
+            .container {
+                margin: 0 auto;
+                position: relative;
+                width: inherit;
+                height: inherit;
+            }
 
-#basic_info {
-  display: none;
-}
-</style>
+            video {
+                max-height: 100%;
+                width: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            #lines {
+                position: relative;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                background-color:rgba(0,0,0,0);
+            }
+
+            #basic_info {
+                display: none;
+            }
+        </style>
     </head>
     <body>
+        <div>
+            <input id="uploadInput" type="file" name="myFiles" multiple accept="video/*">
+        </div>
+        <form name="uploadForm"> </form>
         <section>
             <div id="container" class="container">
-                <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_230bpm.2.mp4" ></video>
+                <!-- <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_230bpm.2.mp4" ></video> -->
                 <div id="svgContainer" class="container">
                     <svg xmlns="http://www.w3.org/2000/svg" id="lines"
                          onload='Init(evt)'
