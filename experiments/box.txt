@@ -1,0 +1,28 @@
+// 
+//      L catch   L rel.   Center   R rel.    R catch  
+// +-------+---------+--------+--------+---------+-------+
+// |       |         |        |        |         |       |
+// |       |         |        |        |         |       |
+// +-------+---------+--------+--------+---------+-------+ Pattern Ceiling
+// |       |         |        |        |         |       |   ^   
+// |       |         |        |        |         |       |   |   
+// |       |         |        |        |         |       |   Ht    
+// |       |         |        |        |         |       |   |   
+// |       |         |        |        |         |       |   v   
+// +-------+---------+--------+--------+---------+-------+ Tray Pane
+// |       |         |        |        |         |       |   Hf
+// +-------+---------+--------+--------+---------+-------+ Pattern Floor
+// |       |         |        |        |         |       |
+// |       |         |        |        |         |       |
+// +-------+---------+--------+--------+---------+-------+
+// |<------- Center --------->|                           
+//                            |<- Wr ->|                  
+//                            |<----- Wc ------->|        
+//                   |<---------- Wt ----------->|        
+//
+// rel. = release
+// Wr = width of release line -- distance between center and release line.
+// Wc = width of catch line -- distance between center and catch line.
+// Wt = width of throw
+// Ht = height of throw
+// Hf = distance between tray plane and pattern floor
