@@ -93,3 +93,11 @@ See [Kalman Filter](https://www.youtube.com/watch?v=3iqRhbXBVRE) for implementat
     * a 'pattern' is a collection of throws and carries.
 
 \* This neglects starts and multiplexes, which is probably a serious oversight.
+
+## Minimum viable product for juggling tracker
+
+* Reliably detect props and hands, exclude noise
+* Reliably track paths of props and hands
+* Detect throw and catch positions
+* Output position of hand, prop, throw and catch as text, image or video. 
+
