@@ -1,3 +1,5 @@
+// See https://stackoverflow.com/a/45355068/266747 to find native resolution
+
 function loadVideo() {
     file = this.files[0];
     console.log( "file: ", file );
@@ -14,6 +16,7 @@ function loadVideo() {
     const reader = new FileReader();
     reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(video);
     reader.readAsDataURL(file);
+    video.visibility = 'show'
     video.volume = 0;
     video.loop = 1;
     video.play();

@@ -13,17 +13,22 @@
                 height: inherit;
                 width: inherit;
             }
+            section {
+                height: 95%;
+                /* margin-bottom: -30px; */
+            }
 
             .container {
                 margin: 0 auto;
-                position: relative;
+                position: absolute;
                 width: inherit;
                 height: inherit;
+                top: 0;
+                left: 0;
             }
-
             video {
-                max-height: 100%;
-                width: auto;
+                height: 100%;
+                max-width: 100%;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -36,21 +41,19 @@
                 z-index: 10;
                 background-color:rgba(0,0,0,0);
             }
-
+            #uploadInput {
+                z-index: 10;
+            }
             #basic_info {
                 display: none;
             }
         </style>
     </head>
     <body>
-        <div>
-            <input id="uploadInput" type="file" name="myFiles" multiple accept="video/*">
-        </div>
-        <form name="uploadForm"> </form>
         <section>
             <div id="container" class="container">
                 <!-- <video class="video" id="vd1" controls autoPlay loop src="videos/3_ball_230bpm.2.mp4" ></video> -->
-                <div id="svgContainer" class="container">
+-               <div id="svgContainer" class="container">
                     <svg xmlns="http://www.w3.org/2000/svg" id="lines"
                          onload='Init(evt)'
                          onmousedown='Grab(evt)'
@@ -70,6 +73,10 @@
                 </div>
             </div>
         </section>
+        <div>
+            <input id="uploadInput" type="file" name="myFiles" multiple accept="video/*">
+        </div>
+        <form name="uploadForm"> </form>
         <script type="text/javascript" src="j.js"></script>
     </body>
 </html>
