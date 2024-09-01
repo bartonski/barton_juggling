@@ -1,4 +1,6 @@
 *.detector.mp4
 *_mask.png
-
 experiments/videos/
+experiments/DragAndDrop.svg
+experiments/drag_and_drop_example.svg
+experiments/local_video.html
