@@ -1,0 +1,4 @@
+*.detector.mp4
+*_mask.png
+
+experiments/videos/
