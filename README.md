@@ -97,6 +97,14 @@ See [Kalman Filter](https://www.youtube.com/watch?v=3iqRhbXBVRE) for implementat
 ## Minimum viable product for juggling tracker
 
 * Reliably detect props and hands, exclude noise
+    * Mediapipe pose detection does a pretty good job of locating left and right hands
+    * Throw must occur when hand is traveling up
+    * Catch must occur when hand is traveling down (kinda kills dots...)
+    * Use background subtraction for first approximation of prop detection -- can remove contours of hands from mediapipe data above.
+    * Catch must happen where arc of prop and path of hand intersect.
+    * Color ranges can be used for detecting props
+    * Use Kalman filtering for hand movement
+    * Use Kalman filtering for prop movement
 * Reliably track paths of props and hands
 * Detect throw and catch positions
 * Output position of hand, prop, throw and catch as text, image or video. 
