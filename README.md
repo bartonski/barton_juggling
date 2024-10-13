@@ -28,6 +28,7 @@ Concepts that have more structure, but are still being refined
 
 * [Juggling Trainer Notes](./juggling_trainer.md)
 * [Juggling Theory](./thoughts_and_notes/juggling_theory.md)
+* [Things I wish I'd learned earlier](./thoughts_and_notes/things_to_learn_early.md)
 
 ## Essays
 
