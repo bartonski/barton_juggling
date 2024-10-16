@@ -13,7 +13,9 @@
             1. Know where 'vertical' is
             1. Wall plane / scoop
             1. Tray plane
-                1. Throw and catch happen in the tray plane, meaning that the forearm is paralell to the floor. 
+                1. Throw and catch happen in the tray plane, meaning that the forearm is paralell to the floor.
+            1. Throw and catch points
+                1. These should fall on the line defined by the intersection of the tray plane and the wall plane.
             1. Tangent at the time of throw
                 1. If you draw a right triangle with the base being the throw and catch points the height of the triangle is four times the height of a parabola with the equivalent throw angle.
             1. Throw ceiling
