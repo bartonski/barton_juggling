@@ -79,12 +79,16 @@ See [Kalman Filter](https://www.youtube.com/watch?v=3iqRhbXBVRE) for implementat
 ## Glossary
 
 * Juggling tracker terminology:
-    * an 'event' has a location in space and time.
+    * a 'moment' is a location in time. Moments may be absolute or relative
+    * an 'event' has a location in space and a moment.
     * an 'object' is something that exists in space and time -- a hand or prop.
     * a 'hand' is an object that manipulates props being juggled
     * a 'prop' is an object being juggled -- ball, club, ring, rubber chicken, etc.
     * a 'release' is the event where a prop is thrown
     * a 'catch' is the event where a prop is caught
+    * an interval is a period of time between two moments.
+        * An inerval has a duration
+    * a 'beat' is the interval between two releases and/or two catches.
     * a 'path' has an object and a sequence of events that describe the movement of the object.
     * a 'throw' is the path of a prop from release to catch.
     * a 'carry' is the path of a prop and hand from the point of catch to release
