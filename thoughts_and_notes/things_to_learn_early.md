@@ -3,6 +3,7 @@
 * Fear of dropping is the biggest mental hurdle to juggling
 * Not paying attention to drops is the second biggest mental hurdle to juggling
 * Learning to juggle involves physically rewiring the brain -- some neurons are coated with a layer of a protein called myelin, which speeds up the neural inpulses. This process takes some time, so you can't learn to juggle instantly.
+* If you want to move fast, practice slow. Get the preparation, accuracy and timing correct before increasing speed.
 * Focus, in order of importance:
     1. Rhythm / Tempo
     1. Consistency of throws and catches
@@ -16,6 +17,8 @@
             1. Wall plane / scoop
             1. Tray plane
                 1. Throw and catch happen in the tray plane, meaning that the forearm is paralell to the floor.
+                    1. Catching below the tray plane creates a little bit more time for corrections. This should be uncommon, but it's useful.
+                    1. ***Do not catch above the tray plane.***
             1. Shoulder planes
             1. Throw and catch points
                 1. These should fall on the line defined by the intersection of the tray plane and the wall plane.
@@ -24,7 +27,7 @@
             1. Throw ceiling
                 1. Related to the square of the flight time
         1. Left and right hands must be the same
-        1. Direction of the palm determines the direction of the ball
+        1. Palm plane / Normal. Direction of the palm determines the direction of the ball
             * Throwing too early -- palms point forward, 'sprinting juggler syndrome'
             * Throwing too late -- palms point backward, throw over your head.
             * Think of the negative space between your hand and the prop as you're throwing.  In a cascade, the throw from the opposite hand will travel through that path. (idea: attach streamers to balls? With LEDs?)
@@ -36,7 +39,6 @@
     1. Left / Right placement of catch
 * Feel where your hands are as you make the scoop, and use this as a guide when
 correcting throws.
-* If you want to move fast, practice slow. Get the preparation, accuracy and timing correct before increasing speed.
 * Juggle from your elbows -- think about your forearms and hands as props
   to be manipulated; the real juggling happens at the elbows. The elbows
   don't move much from left to right or back/forth but they do rotate to
@@ -55,9 +57,10 @@ correcting throws.
     * If you're dropping too much, back up to an easier step and get it perfect
 * Practice your juggling grip.
 * Try varying scoop size?
-* When juggling clubs, you're juggling the center of gravity of the clubs.
 * Pay attention to movements that feel rushed. Analyze what is causing the rush and fix it. You may:
+    * Learn the feeling of a rush, and conciously 'un-rush'. Concentrate on good technique and smooth throws.
+    * 'Polish' your throws -- make your movements regular and predictable
     * Increase the height of your throws
     * Increase your dwell ratio
     * Decrease the length of your scoop (catch closer to your throw position)
-    * 'Polish' your throws -- make your movements regular and predictable
+* When juggling clubs, you're juggling the center of gravity of the clubs.
