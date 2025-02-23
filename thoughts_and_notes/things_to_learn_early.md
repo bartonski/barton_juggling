@@ -64,3 +64,13 @@ correcting throws.
     * Increase your dwell ratio
     * Decrease the length of your scoop (catch closer to your throw position)
 * When juggling clubs, you're juggling the center of gravity of the clubs.
+---
+## [Notes from Reddit](https://www.reddit.com/r/juggling/comments/1iv573u/comment/me86l97/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+
+Put two balls in your non-dominant hand, and work on making three throws until the pattern is just as solid as from your dominant hand.
+
+Next hold two balls in your non-dominant hand, but pretend you're holding two in your dominant hand. Mime the first throw and count it as 'one'. Then make three throws (just as you did in the previous step). These will be throws 2, 3 and 4.
+
+That will get you past the 'freeze because I don't know what happens next' feeling. Start back with two in your dominant hand, and make all four throws, and catch. There will be a tendency to fling the fourth throw out in front of you in a panic. If that happens, go back to starting with the non-dominant hand and practice until all three throws happen in exactly the same plane. Go through miming the first throw, keeping the other throws exactly the same.
+
+You can use the same technique, miming out two throws then making three real throws when figuring out five throws. Once you get to five throws and five catches, moving up to six throws shouldn't be a huge streatch. Keeping things in a plane may be a challenge, just move back to the previous step and make sure that everything stays in the same plane. Keep adding throws.
