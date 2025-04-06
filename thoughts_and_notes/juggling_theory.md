@@ -43,13 +43,13 @@ F -- The time the ball spends in the air is related to the initial velocity, hei
 
 ## My thoughts and ideas
 
-### Acceleration of Gravity in Pixels/Frame^2^
+### $Acceleration of Gravity in Pixels/Frame^2$
 
 | Unit       | Definition                                              |
 |------------|---------------------------------------------------------|
 | **P**      | Pixel to millimeter ratio.                              |
 | **F**      | Frames per second (found in video metadata)             |
-| **g**      | Acceleration of gravity. 9.81 m/s^2                     |
+| **g**      | Acceleration of gravity. $9.81 m/s^2$                   |
 
 #### Conversions
 
@@ -60,26 +60,26 @@ Example conversion. Let's say that you have a 60 mm ball which is 120 px in diam
 | **P** = $120 px / 60 mm$              | Ball width in px / Ball width in mm |
 | **P** = $2px / 1 mm$                  | Divide top and bottom by 60         |
 | **P** = $(2px / 1 mm)(1000mm / m)$    | Convert millimeters to meters       |
-| **P** = $2px * 1000 ~~mm~~ / 1 ~~mm~~ * m$ | Cancel mm and regroup          |
+| **P** = 2px * 1000 ~~mm~~ / 1 ~~mm~~ * m | Cancel mm and regroup            |
 | **P** = $2000px / 1 m$                |                                     |
 | **F** = $60 frames / s$               | From video metadata                 |
 | **g** = $9.81 m / s^2$                | Acceleration of gravity             |
 | **g** = $9.81 m * ( 2000 px / 1 m) / s^2$ | Convert meters to pixels        |
-| **g** = $9.81 ~~m~~ * ( 2000 px / 1 ~~m~~) / s^2$ | Cancel meters           |
+| **g** = 9.81 ~~m~~ * ( 2000 px / 1 ~~m~~) / $s^2$ | Cancel meters           |
 | **g** = $9.81 * 2000 px / s^2$        |                                     |
 | **g** = $19620 px / s^2$              | 9.81 * 2000 = 19620                 |
 | **g** = $19620 px / ((1 s)(60 frames / 1 s))^2$ | Convert seconds to frames |
-| **g** = $19620 px / ((1 ~~s~~)(60 frames / 1 ~~s~~))^2$ | Cancel seconds    |
+| **g** = 19620 px / ((1 ~~s~~)(60 frames / 1 ~~s~~))$^2$ | Cancel seconds    |
 | **g** = $19620 px / 3600 frames^2$    | Square frames                       |
 | **g** = $5.45 px / frames^2$          | Divide top and bottom by 3600       |
 
 ---
 
-s(t) = 1/2 **gt**^2 + **v~0~t** + **s~0~**
+$$s(t) = 1/2 gt^2 + v_0t + s_0$$
 
-s(t) = 1/2 (5.45 px / frames^2)**t**^2 + **v~0~t** + **s~0~**
+$$s(t) = 1/2 (5.45 px / frames^2)t^2 + v_0t + s_0$$
 
-where **t** is time in frames, and **s** is distance in pixels.
+where t is time in frames, and s is distance in pixels.
 
 ---
 
