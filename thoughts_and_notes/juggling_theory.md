@@ -45,60 +45,43 @@ F -- The time the ball spends in the air is related to the initial velocity, hei
 
 ### Acceleration of Gravity in Pixels/Frame^2^
 
-#### **P** - Pixel to Millimeter Ratio.
-
-**P** = number of px / mm in your image file. For instance, if you're using a 60mm ball, and the width of the ball is 120px,
-
-**P** = 120px / 60mm
-
-**P** = 2px/mm
-
-#### **F** - Frames Per Second
-
-**F** frames/s
-
-You should be able to find this in your movie meta-data.
+| Unit       | Definition                                              |
+|------------|---------------------------------------------------------|
+| **P**      | Pixel to millimeter ratio.                              |
+| **F**      | Frames per second (found in video metadata)             |
+| **g**      | Acceleration of gravity. 9.81 m/s^2                     |
 
 #### Conversions
 
-**P** px/~~mm~~ * 1000 ~~mm~~/m
+Example conversion. Let's say that you have a 60 mm ball which is 120 px in diameter on screen, and the video is at 2x slo-mo (60fps):
 
-g = 1000 * **P** px/~~m~~ * 9.8 ~~m~~ / s^2^
-
-g = 9800 * **P** px / s^2^
-
-**F** frames / s
-
-**F^2^** frames^2^ / s^2^
-
-g = ( 9800 * **P** px / s^2^ ) * (s^2^/**F^2^** frames^2^)
-
-g = ( 9800 * **P** px ) / (**F^2^** * frames^2^)
-
-#### Example
-
-If we have a 60mm ball that shows as 120px wide in our image,, and we'se shooting in 2x slo-motion (60 frames/S), then
-
-**P** = 120px/60mm = 2px/mm
-
-**F** = 60 frames/s
-
-g = ( 9800 * **P** px ) / (**F^2^** * frames^2^)
-
-g = ( 9600 * 2 px ) / 60^2^ frames^2^
-
-g = 19600 px / 3600 frames^2^
-
-g = 5.44 px / frame^2^
+| Conversion                          | Explanation of conversion step        |
+|-------------------------------------|---------------------------------------|
+| **P** = 120 px / 60 mm              | Ball width in px / Ball width in mm   |
+| **P** = 2px / 1 mm                  | Divide top and bottom by 60           |
+| **P** = (2px / 1 mm)(1000mm / m)    | Convert millimeters to meters         |
+| **P** = 2px * 1000 ~~mm~~ / 1 ~~mm~~ * m | Cancel mm and regroup            |
+| **P** = 2000px / 1 m                |                                       |
+| **F** = 60 frames / s               | From video metadata                   |
+| **g** = 9.81 m / s^2                | Acceleration of gravity               |
+| **g** = 9.81 m * ( 2000 px / 1 m) / s^2 | Convert meters to pixels          |
+| **g** = 9.81 ~~m~~ * ( 2000 px / 1 ~~m~~) / s^2 | Cancel meters             |
+| **g** = 9.81 * 2000 px / s^2        |                                       |
+| **g** = 19620 px / s^2              | 9.81 * 2000 = 19620                   |
+| **g** = 19620 px / ((1 s)(60 frames / 1 s))^2 | Convert seconds to frames   |
+| **g** = 19620 px / ((1 ~~s~~)(60 frames / 1 ~~s~~))^2 | Cancel seconds      |
+| **g** = 19620 px / 3600 frames^2    | Square frames                         |
+| **g** = 5.45 px / frames^2          | Divide top and bottom by 3600         |
 
 ---
 
-s(t) = 1/2 gt^2^ + v~0~t + s~0~
+s(t) = 1/2 **gt**^2 + **v~0~t** + **s~0~**
 
-where t is time in frames.
+s(t) = 1/2 (5.45 px / frames^2)**t**^2 + **v~0~t** + **s~0~**
+
+where **t** is time in frames, and **s** is distance in pixels.
 
 ---
-
 
 ### Ideas about object tracking
 
