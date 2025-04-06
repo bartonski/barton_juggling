@@ -55,23 +55,23 @@ F -- The time the ball spends in the air is related to the initial velocity, hei
 
 Example conversion. Let's say that you have a 60 mm ball which is 120 px in diameter on screen, and the video is at 2x slo-mo (60fps):
 
-| Conversion                          | Explanation of conversion step        |
-|-------------------------------------|---------------------------------------|
-| **P** = 120 px / 60 mm              | Ball width in px / Ball width in mm   |
-| **P** = 2px / 1 mm                  | Divide top and bottom by 60           |
-| **P** = (2px / 1 mm)(1000mm / m)    | Convert millimeters to meters         |
-| **P** = 2px * 1000 ~~mm~~ / 1 ~~mm~~ * m | Cancel mm and regroup            |
-| **P** = 2000px / 1 m                |                                       |
-| **F** = 60 frames / s               | From video metadata                   |
-| **g** = 9.81 m / s^2                | Acceleration of gravity               |
-| **g** = 9.81 m * ( 2000 px / 1 m) / s^2 | Convert meters to pixels          |
-| **g** = 9.81 ~~m~~ * ( 2000 px / 1 ~~m~~) / s^2 | Cancel meters             |
-| **g** = 9.81 * 2000 px / s^2        |                                       |
-| **g** = 19620 px / s^2              | 9.81 * 2000 = 19620                   |
-| **g** = 19620 px / ((1 s)(60 frames / 1 s))^2 | Convert seconds to frames   |
-| **g** = 19620 px / ((1 ~~s~~)(60 frames / 1 ~~s~~))^2 | Cancel seconds      |
-| **g** = 19620 px / 3600 frames^2    | Square frames                         |
-| **g** = 5.45 px / frames^2          | Divide top and bottom by 3600         |
+| Conversion                            | Explanation of conversion step      |
+|---------------------------------------|-------------------------------------|
+| **P** = $120 px / 60 mm$              | Ball width in px / Ball width in mm |
+| **P** = $2px / 1 mm$                  | Divide top and bottom by 60         |
+| **P** = $(2px / 1 mm)(1000mm / m)$    | Convert millimeters to meters       |
+| **P** = $2px * 1000 ~~mm~~ / 1 ~~mm~~ * m$ | Cancel mm and regroup          |
+| **P** = $2000px / 1 m$                |                                     |
+| **F** = $60 frames / s$               | From video metadata                 |
+| **g** = $9.81 m / s^2$                | Acceleration of gravity             |
+| **g** = $9.81 m * ( 2000 px / 1 m) / s^2$ | Convert meters to pixels        |
+| **g** = $9.81 ~~m~~ * ( 2000 px / 1 ~~m~~) / s^2$ | Cancel meters           |
+| **g** = $9.81 * 2000 px / s^2$        |                                     |
+| **g** = $19620 px / s^2$              | 9.81 * 2000 = 19620                 |
+| **g** = $19620 px / ((1 s)(60 frames / 1 s))^2$ | Convert seconds to frames |
+| **g** = $19620 px / ((1 ~~s~~)(60 frames / 1 ~~s~~))^2$ | Cancel seconds    |
+| **g** = $19620 px / 3600 frames^2$    | Square frames                       |
+| **g** = $5.45 px / frames^2$          | Divide top and bottom by 3600       |
 
 ---
 
