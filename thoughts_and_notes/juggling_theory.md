@@ -43,7 +43,7 @@ F -- The time the ball spends in the air is related to the initial velocity, hei
 
 ## My thoughts and ideas
 
-### $Acceleration of Gravity in Pixels/Frame^2$
+### Acceleration of Gravity in $Pixels / Frame^2$
 
 | Unit       | Definition                                              |
 |------------|---------------------------------------------------------|
@@ -75,9 +75,10 @@ Example conversion. Let's say that you have a 60 mm ball which is 120 px in diam
 
 ---
 
-$$s(t) = frac{1}{2} gt^2 + v_0t + s_0$$
+$$s(t) = \frac{1}{2} gt^2 + v_0t + s_0$$
 
-$$s(t) = frac{1}{2} (5.45 px / frames^2)t^2 + v_0t + s_0$$
+$$s(t) = \frac{1}{2} (5.45 px / frames^2)t^2 + v_0t + s_0$$
+
 where t is time in frames, and s is distance in pixels.
 
 ---
