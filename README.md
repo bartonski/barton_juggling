@@ -19,8 +19,8 @@ Thoughts, tidbits, resources to keep track of
 * Keep hands low
 * Thow when the club reaches horizontal.
 * **REALLY** try to keep throws vertical
-* Stand next to a wall with bad hand away from the wall. This will force you not
-to throw up/forward rather than out.
+* Stand next to a wall with bad hand away from the wall. This will force you not to throw up/forward rather than out.
+* If your throws are not symetrical, have someone stand behind you and tell you what the differences are between the right and left throws. In my case, the throw from my right hand was too close to my body, causing the club to hit my back or not come in as cleanly with my left. (Thanks, Kevin)!
 
 ## Notes
 

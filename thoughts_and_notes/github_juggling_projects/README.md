@@ -17,6 +17,8 @@ A couple of other possible uses
 ### Python
 
 * [Juggling Detector](https://github.com/bartonski/juggling_detector) -- My juggling Detector/Tracker. By no means, the best.
+* [`cv2_juggling`](https://github.com/bartonski/cv2_juggling) --
+My second draft. Better organized than the first, still a work in progress.
 
 ### Siteswap Inference and analysis
 
