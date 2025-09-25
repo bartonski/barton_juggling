@@ -2,7 +2,12 @@
 
 * Fear of dropping is the biggest mental hurdle to juggling
 * Not paying attention to drops is the second biggest mental hurdle to juggling
+* Make goals for practice.
+* Hold your goal in mind at the start of each juggling pattern.
+* If your practice isn't moving you toward your goal, change your practice.
+* Fix the problem you have -- e.g. if you're always throwing forward, concentrate on keeping your throws vertical.
 * Learning to juggle involves physically rewiring the brain -- some neurons are coated with a layer of a protein called myelin, which speeds up the neural inpulses. This process takes some time, so you can't learn to juggle instantly.
+* Each muscle has a dedicated part of the brain. These areas of the brain are highly connected, so that the muscles work in concert. Essentially, each muscle has its own brain, and all the muscles are learning in parallel. Always practice with the best technique that you can, so that the coordinated movement is the same for each throw and catch.
 * If you want to move fast, practice slow. Get the preparation, accuracy and timing correct before increasing speed.
 * Focus, in order of importance:
     1. Rhythm / Tempo
@@ -14,6 +19,9 @@
             1. A drop is caused by a violation of one of the above. identify what you didn't know.
         1. Know your guide posts
             1. Know where 'vertical' is
+            1. Throw ceiling
+                1. The top of the pattern is where your eyes should be focused. The arcs should all peak at the same place.
+                1. Related to the square of the flight time
             1. Wall plane / scoop
             1. Tray plane
                 1. Throw and catch happen in the tray plane, meaning that the forearm is paralell to the floor.
@@ -24,8 +32,6 @@
                 1. These should fall on the line defined by the intersection of the tray plane and the wall plane.
             1. Tangent at the time of throw
                 1. If you draw a right triangle with the base being the throw and catch points the height of the triangle is four times the height of a parabola with the equivalent throw angle.
-            1. Throw ceiling
-                1. Related to the square of the flight time
         1. Left and right hands must be the same
         1. Palm plane / Normal. Direction of the palm determines the direction of the ball
             * Throwing too early -- palms point forward, 'sprinting juggler syndrome'
